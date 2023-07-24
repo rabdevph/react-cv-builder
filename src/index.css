@@ -1,5 +1,24 @@
+/* REGULAR */
+@font-face {
+  font-family: 'Open Sans Regular';
+  src: url('./assets/fonts/OpenSans/OpenSans-Regular.ttf');
+}
+
+/* SEMI-BOLD */
+@font-face {
+  font-family: 'Open Sans Semi-Bold';
+  src: url('./assets/fonts/OpenSans/OpenSans-SemiBold.ttf');
+}
+
+/* BOLD */
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('./assets/fonts/OpenSans/OpenSans-Bold.ttf');
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Open Sans Regular', sans-serif;
 }
 
 *,
@@ -8,4 +27,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: #f3f4f6;
 }
