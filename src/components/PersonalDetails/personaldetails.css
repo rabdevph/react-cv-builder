@@ -1,0 +1,28 @@
+.personal {
+  background-color: #ffffff;
+  padding: 24px;
+}
+
+.personal-name {
+  font-family: 'Open Sans Bold';
+  font-size: 1.5rem;
+}
+
+.personal-profession {
+  font-family: 'Open Sans Regular';
+  font-size: 0.75rem;
+}
+
+.personal-details {
+  display: flex;
+  gap: 24px;
+  font-size: 0.675rem;
+  padding-top: 24px;
+}
+
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}

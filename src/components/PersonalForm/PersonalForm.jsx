@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './personalform.css';
 
-export const PersonalForm = () => {
+export const PersonalForm = ({ onInputChange }) => {
   const [focusedInput, setFocusedInput] = useState(null);
 
   const handleFocus = (inputId) => {
@@ -18,16 +18,17 @@ export const PersonalForm = () => {
       <form className="personal-form">
         <p className="form-header">PERSONAL DETAILS</p>
         <div className="input-wrapper">
-          <label className="form-label" htmlFor="full-name">
+          <label className="form-label" htmlFor="name">
             FULL NAME
           </label>
           <input
-            className={`form-input ${focusedInput === 'full-name' ? 'focused' : ''}`}
+            className={`form-input ${focusedInput === 'name' ? 'focused' : ''}`}
             type="text"
-            id="full-name"
+            id="name"
             autoComplete="off"
-            onFocus={() => handleFocus('full-name')}
+            onFocus={() => handleFocus('name')}
             onBlur={handleBlur}
+            onChange={onInputChange}
           />
         </div>
 
@@ -42,6 +43,7 @@ export const PersonalForm = () => {
             autoComplete="off"
             onFocus={() => handleFocus('profession')}
             onBlur={handleBlur}
+            onChange={onInputChange}
           />
         </div>
 
@@ -56,6 +58,7 @@ export const PersonalForm = () => {
             autoComplete="off"
             onFocus={() => handleFocus('phone-number')}
             onBlur={handleBlur}
+            onChange={onInputChange}
           />
         </div>
 
@@ -70,6 +73,7 @@ export const PersonalForm = () => {
             autoComplete="off"
             onFocus={() => handleFocus('email-address')}
             onBlur={handleBlur}
+            onChange={onInputChange}
           />
         </div>
 
@@ -84,6 +88,7 @@ export const PersonalForm = () => {
             autoComplete="off"
             onFocus={() => handleFocus('socmed-url')}
             onBlur={handleBlur}
+            onChange={onInputChange}
           />
         </div>
 
@@ -98,6 +103,7 @@ export const PersonalForm = () => {
             autoComplete="off"
             onFocus={() => handleFocus('address')}
             onBlur={handleBlur}
+            onChange={onInputChange}
           />
         </div>
       </form>
