@@ -2,7 +2,7 @@ import React from 'react';
 
 import Icon from '@mdi/react';
 import { mdiPhone, mdiAt, mdiLinkVariant, mdiMapMarker } from '@mdi/js';
-import './personaldetails.css';
+import '../styles/cv.css';
 
 export const PersonalDetails = ({ personalDetails }) => {
   const { name, profession, phone, email, socmed, address } = personalDetails;

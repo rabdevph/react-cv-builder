@@ -1,17 +1,20 @@
 .app {
   display: flex;
   gap: 12px;
-  height: 100vh;
+  /* height: 100vh; */
   max-width: 100%;
   padding: 12px;
 }
 
 .cv-forms {
-  background-color: #f87171;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   max-width: 480px;
 }
 
 .cv-display {
   flex: 1;
   background-color: #fcd34d;
+  min-height: 900px;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './personalform.css';
+import '../styles/forms.css';
 
 export const PersonalForm = ({ onInputChange }) => {
   const [focusedInput, setFocusedInput] = useState(null);

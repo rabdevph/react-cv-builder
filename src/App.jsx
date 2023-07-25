@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import { PersonalForm } from './components/PersonalForm/PersonalForm.jsx';
-import { PersonalDetails } from './components/PersonalDetails/PersonalDetails.jsx';
+import { PersonalForm } from './components/PersonalForm.jsx';
+import { SummaryForm } from './components/SummaryForm.jsx';
+import { PersonalDetails } from './components/PersonalDetails.jsx';
 
-import { personal } from './data/data.js';
+import { personal, summary } from './data/data.js';
 
 import './App.css';
 
@@ -12,9 +13,11 @@ function App() {
 
   const handlePersonalInputChange = (e) => {
     const property = e.target.id;
-    setPersonalDetails({
-      ...personalDetails,
-      [property]: e.target.value,
+    setPersonalDetails((prevState) => {
+      return {
+        ...prevState,
+        [property]: e.target.value,
+      };
     });
   };
 
@@ -22,6 +25,7 @@ function App() {
     <div className="app">
       <div className="cv-forms">
         <PersonalForm onInputChange={(e) => handlePersonalInputChange(e)} />
+        <SummaryForm />
       </div>
       <div className="cv-display">
         <PersonalDetails personalDetails={personalDetails} />
