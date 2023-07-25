@@ -24,9 +24,9 @@ export const SummaryForm = () => {
         SUMMARY
       </button>
       <form className={`summary-form ${collapsed ? 'collapsed' : ''}`}>
-        <div className="input-wrapper">
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <textarea
-            className={`form-input textarea ${focused ? 'focused' : ''} ${collapsed ? 'collapsed' : ''}`}
+            className={`form-input textarea ${focused ? 'focused' : ''}`}
             id="summary"
             onFocus={handleFocus}
             onBlur={handleBlur}

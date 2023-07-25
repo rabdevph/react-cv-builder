@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import '../styles/forms.css';
 
 export const PersonalForm = ({ onInputChange }) => {
+  const [collapsed, setCollapsed] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
 
   const handleFocus = (inputId) => {
@@ -13,11 +14,17 @@ export const PersonalForm = ({ onInputChange }) => {
     setFocusedInput(null);
   };
 
+  const toggleCollapse = () => {
+    setCollapsed((prevState) => !prevState);
+  };
+
   return (
-    <>
-      <form className="personal-form">
-        <p className="form-header">PERSONAL DETAILS</p>
-        <div className="input-wrapper">
+    <div className="personal-form-wrapper">
+      <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
+        PERSONAL DETAILS
+      </button>
+      <form className={`personal-form ${collapsed ? 'collapsed' : ''}`}>
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="name">
             FULL NAME
           </label>
@@ -32,7 +39,7 @@ export const PersonalForm = ({ onInputChange }) => {
           />
         </div>
 
-        <div className="input-wrapper">
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="profession">
             PROFESSION
           </label>
@@ -47,7 +54,7 @@ export const PersonalForm = ({ onInputChange }) => {
           />
         </div>
 
-        <div className="input-wrapper">
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="phone">
             PHONE NUMBER
           </label>
@@ -62,7 +69,7 @@ export const PersonalForm = ({ onInputChange }) => {
           />
         </div>
 
-        <div className="input-wrapper">
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="email">
             EMAIL ADDRESS
           </label>
@@ -77,7 +84,7 @@ export const PersonalForm = ({ onInputChange }) => {
           />
         </div>
 
-        <div className="input-wrapper">
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="socmed">
             LINKEDIN/GITHUB URL
           </label>
@@ -92,7 +99,7 @@ export const PersonalForm = ({ onInputChange }) => {
           />
         </div>
 
-        <div className="input-wrapper">
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="address">
             ADDRESS
           </label>
@@ -107,6 +114,6 @@ export const PersonalForm = ({ onInputChange }) => {
           />
         </div>
       </form>
-    </>
+    </div>
   );
 };

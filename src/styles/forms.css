@@ -1,11 +1,21 @@
 /* PERSONAL */
-.personal-form {
+.personal-form-wrapper {
   background-color: #ffffff;
+}
+
+.personal-form {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 300px;
   max-width: 480px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.personal-form.collapsed {
+  max-height: 376px;
   padding: 12px;
 }
 
@@ -31,10 +41,6 @@
 }
 
 /* COMMON */
-.form-header {
-  font-family: 'Open Sans Bold';
-  font-size: 1.25rem;
-}
 
 .form-collapse-btn {
   background-color: #3b82f6;
@@ -63,6 +69,14 @@
   content: '\2212';
 }
 
+.form-input-wrapper {
+  visibility: hidden;
+}
+
+.form-input-wrapper.collapsed {
+  visibility: visible;
+}
+
 .form-label {
   display: block;
   font-family: 'Open Sans Semi-Bold';
@@ -83,11 +97,6 @@
 .form-input.textarea {
   resize: none;
   height: 120px;
-  visibility: hidden;
-}
-
-.form-input.textarea.collapsed {
-  visibility: visible;
 }
 
 .form-input.focused {

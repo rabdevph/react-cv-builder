@@ -16,5 +16,7 @@
 .cv-display {
   flex: 1;
   background-color: #fcd34d;
-  min-height: 900px;
+  min-height: 297mm;
+  max-width: 210mm;
+  padding: 24px;
 }
