@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import '../styles/forms.css';
 
-export const PersonalForm = ({ onInputChange }) => {
+export const PersonalDetailsForm = ({ onInputChange }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
 

@@ -14,9 +14,26 @@
 }
 
 .cv-display {
+  background-color: #ffffff;
   flex: 1;
-  background-color: #fcd34d;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
   min-height: 297mm;
   max-width: 210mm;
-  padding: 24px;
+  padding: 48px;
+}
+
+.general-info {
+  background-color: #ffffff;
+  display: flex;
+  gap: 24px;
+}
+
+.primary-info {
+  flex: 2;
+}
+
+.secondary-info {
+  flex: 1;
 }

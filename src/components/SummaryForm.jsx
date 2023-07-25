@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import '../styles/forms.css';
 
-export const SummaryForm = () => {
+export const SummaryForm = ({ onInputChange }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [focused, setFocused] = useState(false);
 
@@ -27,9 +27,10 @@ export const SummaryForm = () => {
         <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <textarea
             className={`form-input textarea ${focused ? 'focused' : ''}`}
-            id="summary"
+            id="content"
             onFocus={handleFocus}
             onBlur={handleBlur}
+            onChange={onInputChange}
           ></textarea>
         </div>
       </form>
