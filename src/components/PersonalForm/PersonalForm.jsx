@@ -48,45 +48,45 @@ export const PersonalForm = ({ onInputChange }) => {
         </div>
 
         <div className="input-wrapper">
-          <label className="form-label" htmlFor="phone-number">
+          <label className="form-label" htmlFor="phone">
             PHONE NUMBER
           </label>
           <input
-            className={`form-input ${focusedInput === 'phone-number' ? 'focused' : ''}`}
+            className={`form-input ${focusedInput === 'phone' ? 'focused' : ''}`}
             type="text"
-            id="phone-number"
+            id="phone"
             autoComplete="off"
-            onFocus={() => handleFocus('phone-number')}
+            onFocus={() => handleFocus('phone')}
             onBlur={handleBlur}
             onChange={onInputChange}
           />
         </div>
 
         <div className="input-wrapper">
-          <label className="form-label" htmlFor="email-address">
+          <label className="form-label" htmlFor="email">
             EMAIL ADDRESS
           </label>
           <input
-            className={`form-input ${focusedInput === 'email-address' ? 'focused' : ''}`}
+            className={`form-input ${focusedInput === 'email' ? 'focused' : ''}`}
             type="text"
-            id="email-address"
+            id="email"
             autoComplete="off"
-            onFocus={() => handleFocus('email-address')}
+            onFocus={() => handleFocus('email')}
             onBlur={handleBlur}
             onChange={onInputChange}
           />
         </div>
 
         <div className="input-wrapper">
-          <label className="form-label" htmlFor="socmed-url">
+          <label className="form-label" htmlFor="socmed">
             LINKEDIN/GITHUB URL
           </label>
           <input
-            className={`form-input ${focusedInput === 'socmed-url' ? 'focused' : ''}`}
+            className={`form-input ${focusedInput === 'socmed' ? 'focused' : ''}`}
             type="text"
-            id="socmed-url"
+            id="socmed"
             autoComplete="off"
-            onFocus={() => handleFocus('socmed-url')}
+            onFocus={() => handleFocus('socmed')}
             onBlur={handleBlur}
             onChange={onInputChange}
           />
