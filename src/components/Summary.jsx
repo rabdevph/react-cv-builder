@@ -1,13 +1,15 @@
 import React from 'react';
 
 export const Summary = ({ summaryContent }) => {
+  const { content } = summaryContent;
+
   return (
     <div className="summary">
-      <div className="summary-heading">
-        <p className="summary-header">SUMMARY</p>
+      <div className="heading">
+        <p className="header">SUMMARY</p>
         <div className="horizontal-line"></div>
       </div>
-      <div className="summary-content">{summaryContent.content}</div>
+      <p className="summary-content">{content}</p>
     </div>
   );
 };

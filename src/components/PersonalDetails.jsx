@@ -1,11 +1,16 @@
 import React from 'react';
 
+import PhoneIcon from '@mui/icons-material/Phone';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import PlaceIcon from '@mui/icons-material/Place';
+
 import Icon from '@mdi/react';
 import { mdiPhone, mdiAt, mdiLinkVariant, mdiMapMarker } from '@mdi/js';
 import '../styles/cv.css';
 
 export const PersonalDetails = ({ personalDetails }) => {
-  const { name, profession, phone, email, socmed, address } = personalDetails;
+  const { name, profession, phone, email, github, address } = personalDetails;
 
   return (
     <div className="personal">
@@ -13,19 +18,19 @@ export const PersonalDetails = ({ personalDetails }) => {
       <p className="personal-profession">{profession.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}</p>
       <div className="personal-details">
         <div className="detail">
-          <Icon path={mdiPhone} size={0.5} color={'#6b7280'} />
+          <PhoneIcon sx={{ fontSize: 12, color: '#1f2937' }} />
           <p>{phone}</p>
         </div>
         <div className="detail">
-          <Icon path={mdiAt} size={0.5} color={'#6b7280'} />
+          <AlternateEmailIcon sx={{ fontSize: 12, color: '#1f2937' }} />
           <p>{email}</p>
         </div>
         <div className="detail">
-          <Icon path={mdiLinkVariant} size={0.5} color={'#6b7280'} />
-          <p>{socmed}</p>
+          <GitHubIcon sx={{ fontSize: 12, color: '#1f2937' }} />
+          <p>{github}</p>
         </div>
         <div className="detail">
-          <Icon path={mdiMapMarker} size={0.5} color={'#6b7280'} />
+          <PlaceIcon sx={{ fontSize: 12, color: '#1f2937' }} />
           <p>{address.replace(/(^|\s|\.)\S/g, (match) => match.toUpperCase())}</p>
         </div>
       </div>

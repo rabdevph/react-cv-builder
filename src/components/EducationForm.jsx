@@ -53,15 +53,45 @@ export const EducationForm = ({ onInputChange }) => {
         </div>
 
         <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="year">
-            YEAR
+          <label className="form-label" htmlFor="country">
+            COUNTRY
           </label>
           <input
-            className={`form-input ${focusedInput === 'year' ? 'focused' : ''}`}
+            className={`form-input ${focusedInput === 'country' ? 'focused' : ''}`}
             type="text"
-            id="year"
+            id="country"
             autoComplete="off"
-            onFocus={() => handleFocus('year')}
+            onFocus={() => handleFocus('country')}
+            onBlur={handleBlur}
+            onChange={onInputChange}
+          />
+        </div>
+
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
+          <label className="form-label" htmlFor="start-year">
+            START YEAR
+          </label>
+          <input
+            className={`form-input ${focusedInput === 'start-year' ? 'focused' : ''}`}
+            type="text"
+            id="start-year"
+            autoComplete="off"
+            onFocus={() => handleFocus('start-year')}
+            onBlur={handleBlur}
+            onChange={onInputChange}
+          />
+        </div>
+
+        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
+          <label className="form-label" htmlFor="end-year">
+            END YEAR
+          </label>
+          <input
+            className={`form-input ${focusedInput === 'end-year' ? 'focused' : ''}`}
+            type="text"
+            id="end-year"
+            autoComplete="off"
+            onFocus={() => handleFocus('end-year')}
             onBlur={handleBlur}
             onChange={onInputChange}
           />

@@ -1,10 +1,10 @@
 export const personal = {
-  name: 'full name',
-  profession: 'profession',
-  phone: '+123 456 7890',
-  email: 'email@domain.com',
-  socmed: 'github.com/profile',
-  address: 'address',
+  name: 'ralph arsy bauto',
+  profession: 'front-end web developer',
+  phone: '+971 55 161 5292',
+  email: 'rab.devph@gmail.com',
+  github: 'github.com/rabdevph',
+  address: 'dubai, united arab emirates',
 };
 
 export const summary = {
@@ -13,7 +13,9 @@ export const summary = {
 };
 
 export const education = {
-  degree: 'Degree',
-  school: 'School Name',
-  year: 'School Year',
+  degree: 'Bachelor of Computer Science',
+  school: 'AMA Computer College',
+  country: 'Philippines',
+  'start-year': '2014',
+  'end-year': '2016',
 };

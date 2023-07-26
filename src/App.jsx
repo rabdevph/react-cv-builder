@@ -5,6 +5,7 @@ import { SummaryForm } from './components/SummaryForm.jsx';
 import { EducationForm } from './components/EducationForm.jsx';
 import { PersonalDetails } from './components/PersonalDetails.jsx';
 import { Summary } from './components/Summary.jsx';
+import { Education } from './components/Education.jsx';
 
 import { personal, summary, education } from './data/data.js';
 
@@ -58,7 +59,9 @@ function App() {
           <div className="primary-info">
             <Summary summaryContent={summaryContent} />
           </div>
-          <div className="secondary-info">EDUCATION, SKILLS</div>
+          <div className="secondary-info">
+            <Education educationDetails={educationDetails} />
+          </div>
         </div>
       </div>
     </div>

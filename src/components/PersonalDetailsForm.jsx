@@ -85,15 +85,15 @@ export const PersonalDetailsForm = ({ onInputChange }) => {
         </div>
 
         <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="socmed">
-            LINKEDIN/GITHUB URL
+          <label className="form-label" htmlFor="github">
+            GITHUB URL
           </label>
           <input
-            className={`form-input ${focusedInput === 'socmed' ? 'focused' : ''}`}
+            className={`form-input ${focusedInput === 'github' ? 'focused' : ''}`}
             type="text"
-            id="socmed"
+            id="github"
             autoComplete="off"
-            onFocus={() => handleFocus('socmed')}
+            onFocus={() => handleFocus('github')}
             onBlur={handleBlur}
             onChange={onInputChange}
           />

@@ -1,8 +1,10 @@
 .personal {
   background-color: #ffffff;
+  color: #1f2937;
 }
 
 .personal-name {
+  color: #000000;
   font-family: 'Open Sans Bold';
   font-size: 1.75rem;
 }
@@ -23,17 +25,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
 }
 
-.summary {
+.summary,
+.education {
+  color: #1f2937;
   display: flex;
   flex-direction: column;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   gap: 18px;
 }
 
-.summary-header {
+.header {
   color: #6b7280;
 }
 
@@ -41,4 +45,21 @@
   background-color: #6b7280;
   width: 100%;
   height: 2px;
+}
+
+.education-degree {
+  color: #000000;
+  font-family: 'Open Sans Bold';
+}
+
+.education-school,
+.education-country,
+.education-year {
+  font-size: 0.675rem;
+}
+
+.education-year-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
