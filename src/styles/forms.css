@@ -1,46 +1,23 @@
-/* PERSONAL */
-.personal-form-wrapper {
-  background-color: #ffffff;
-}
-
-.personal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 300px;
-  max-width: 480px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-
-.personal-form.collapsed {
-  max-height: 376px;
-  padding: 12px;
-}
-
-/* SUMMARY */
-.summary-form-wrapper {
-  background-color: #ffffff;
-}
-
-.summary-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 300px;
-  max-width: 480px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-
-.summary-form.collapsed {
-  max-height: 144px;
-  padding: 12px;
-}
-
 /* COMMON */
+.form-wrapper {
+  background-color: #ffffff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 300px;
+  max-width: 480px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.form.collapsed {
+  max-height: 500px;
+  padding: 12px;
+}
 
 .form-collapse-btn {
   background-color: #3b82f6;
@@ -96,7 +73,7 @@
 
 .form-input.textarea {
   resize: none;
-  height: 120px;
+  height: 150px;
 }
 
 .form-input.focused {

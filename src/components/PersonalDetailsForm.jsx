@@ -19,11 +19,11 @@ export const PersonalDetailsForm = ({ onInputChange }) => {
   };
 
   return (
-    <div className="personal-form-wrapper">
+    <div className="form-wrapper">
       <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         PERSONAL DETAILS
       </button>
-      <form className={`personal-form ${collapsed ? 'collapsed' : ''}`}>
+      <form className={`form ${collapsed ? 'collapsed' : ''}`}>
         <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <label className="form-label" htmlFor="name">
             FULL NAME

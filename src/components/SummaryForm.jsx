@@ -19,12 +19,15 @@ export const SummaryForm = ({ onInputChange }) => {
   };
 
   return (
-    <div className="summary-form-wrapper">
+    <div className="form-wrapper">
       <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         SUMMARY
       </button>
-      <form className={`summary-form ${collapsed ? 'collapsed' : ''}`}>
+      <form className={`form ${collapsed ? 'collapsed' : ''}`}>
         <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
+          <label className="form-label" htmlFor="degree">
+            CONTENT
+          </label>
           <textarea
             className={`form-input textarea ${focused ? 'focused' : ''}`}
             id="content"
