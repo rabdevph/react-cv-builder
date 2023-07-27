@@ -1,21 +1,29 @@
 import { useState } from 'react';
 
+import { TextArea } from '../components/TextArea.jsx';
+
 import '../styles/forms.css';
 
-export const SummaryForm = ({ onInputChange }) => {
+export const SummaryForm = ({ setSummaryContent }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [focused, setFocused] = useState(false);
-
-  const handleFocus = () => {
-    setFocused(true);
-  };
-
-  const handleBlur = () => {
-    setFocused(false);
-  };
+  const [formValue, setFormValue] = useState({
+    content: '',
+  });
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
+  };
+
+  const handleInputChange = (e) => {
+    setFormValue({
+      content: e.target.value,
+    });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // update summary object -> [data.js]
+    setSummaryContent(formValue);
   };
 
   return (
@@ -23,19 +31,9 @@ export const SummaryForm = ({ onInputChange }) => {
       <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         SUMMARY
       </button>
-      <form className={`form ${collapsed ? 'collapsed' : ''}`}>
-        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="degree">
-            CONTENT
-          </label>
-          <textarea
-            className={`form-input textarea ${focused ? 'focused' : ''}`}
-            id="content"
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={onInputChange}
-          ></textarea>
-        </div>
+      <form className={`form ${collapsed ? 'collapsed' : ''}`} onSubmit={handleFormSubmit}>
+        <TextArea id="content" label="Summary" collapsed={collapsed} handleInputChange={handleInputChange} />
+        <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
       </form>
     </div>
   );

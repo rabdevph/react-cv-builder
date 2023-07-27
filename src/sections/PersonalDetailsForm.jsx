@@ -47,7 +47,7 @@ export const PersonalDetailsForm = ({ setPersonalDetails }) => {
         <Input id="email" label="email address" collapsed={collapsed} handleInputChange={handleInputChange} />
         <Input id="github" label="github profile link" collapsed={collapsed} handleInputChange={handleInputChange} />
         <Input id="address" label="address" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <input type="submit" className="save-button" id="save-btn" value="UPDATE" />
+        <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
       </form>
     </div>
   );

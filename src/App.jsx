@@ -30,7 +30,7 @@ function App() {
     <div className="app">
       <div className="cv-forms">
         <PersonalDetailsForm setPersonalDetails={setPersonalDetails} />
-        <SummaryForm onInputChange={(e) => handleInputChange(e, setSummaryContent)} />
+        <SummaryForm setSummaryContent={setSummaryContent} />
         <EducationForm onInputChange={(e) => handleInputChange(e, setEducationDetails)} />
       </div>
       <div className="cv-wrapper">
