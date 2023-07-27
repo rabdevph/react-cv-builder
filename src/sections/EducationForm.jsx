@@ -1,19 +1,35 @@
 import { useState } from 'react';
 
-export const EducationForm = ({ onInputChange }) => {
+import { Input } from '../components/Input.jsx';
+
+export const EducationForm = ({ setEducationDetails }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [focusedInput, setFocusedInput] = useState(null);
-
-  const handleFocus = (inputId) => {
-    setFocusedInput(inputId);
-  };
-
-  const handleBlur = () => {
-    setFocusedInput(null);
-  };
+  const [formValues, setFormValues] = useState({
+    degree: '',
+    school: '',
+    country: '',
+    'start-year': '',
+    'end-year': '',
+  });
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormValues((prevState) => {
+      return {
+        ...prevState,
+        [id]: value,
+      };
+    });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // update education object -> [data.js]
+    setEducationDetails(formValues);
   };
 
   return (
@@ -21,81 +37,13 @@ export const EducationForm = ({ onInputChange }) => {
       <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         EDUCATION
       </button>
-      <form className={`form ${collapsed ? 'collapsed' : ''}`}>
-        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="degree">
-            DEGREE
-          </label>
-          <input
-            className={`form-input ${focusedInput === 'degree' ? 'focused' : ''}`}
-            type="text"
-            id="degree"
-            autoComplete="off"
-            onFocus={() => handleFocus('degree')}
-            onBlur={handleBlur}
-            onChange={onInputChange}
-          />
-        </div>
-
-        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="school">
-            SCHOOL
-          </label>
-          <input
-            className={`form-input ${focusedInput === 'school' ? 'focused' : ''}`}
-            type="text"
-            id="school"
-            autoComplete="off"
-            onFocus={() => handleFocus('school')}
-            onBlur={handleBlur}
-            onChange={onInputChange}
-          />
-        </div>
-
-        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="country">
-            COUNTRY
-          </label>
-          <input
-            className={`form-input ${focusedInput === 'country' ? 'focused' : ''}`}
-            type="text"
-            id="country"
-            autoComplete="off"
-            onFocus={() => handleFocus('country')}
-            onBlur={handleBlur}
-            onChange={onInputChange}
-          />
-        </div>
-
-        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="start-year">
-            START YEAR
-          </label>
-          <input
-            className={`form-input ${focusedInput === 'start-year' ? 'focused' : ''}`}
-            type="text"
-            id="start-year"
-            autoComplete="off"
-            onFocus={() => handleFocus('start-year')}
-            onBlur={handleBlur}
-            onChange={onInputChange}
-          />
-        </div>
-
-        <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          <label className="form-label" htmlFor="end-year">
-            END YEAR
-          </label>
-          <input
-            className={`form-input ${focusedInput === 'end-year' ? 'focused' : ''}`}
-            type="text"
-            id="end-year"
-            autoComplete="off"
-            onFocus={() => handleFocus('end-year')}
-            onBlur={handleBlur}
-            onChange={onInputChange}
-          />
-        </div>
+      <form className={`form ${collapsed ? 'collapsed' : ''}`} onSubmit={handleFormSubmit}>
+        <Input id="degree" label="degree" collapsed={collapsed} handleInputChange={handleInputChange} />
+        <Input id="school" label="school" collapsed={collapsed} handleInputChange={handleInputChange} />
+        <Input id="country" label="Country" collapsed={collapsed} handleInputChange={handleInputChange} />
+        <Input id="start-year" label="start year" collapsed={collapsed} handleInputChange={handleInputChange} />
+        <Input id="end-year" label="end year" collapsed={collapsed} handleInputChange={handleInputChange} />
+        <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
       </form>
     </div>
   );

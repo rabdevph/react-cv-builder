@@ -31,7 +31,7 @@ function App() {
       <div className="cv-forms">
         <PersonalDetailsForm setPersonalDetails={setPersonalDetails} />
         <SummaryForm setSummaryContent={setSummaryContent} />
-        <EducationForm onInputChange={(e) => handleInputChange(e, setEducationDetails)} />
+        <EducationForm setEducationDetails={setEducationDetails} />
       </div>
       <div className="cv-wrapper">
         <div className="cv">
