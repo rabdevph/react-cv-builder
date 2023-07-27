@@ -79,3 +79,23 @@
 .form-input.focused {
   border: 2px solid #60a5fa;
 }
+
+.save-button {
+  align-self: flex-end;
+  background-color: #3b82f6;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.675rem;
+  font-weight: bold;
+  width: max-content;
+  padding: 8px;
+}
+
+.save-button:hover {
+  background-color: #2563eb;
+}
+
+.save-button:active {
+  background-color: #3b82f6;
+}

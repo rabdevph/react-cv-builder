@@ -5,8 +5,6 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import PlaceIcon from '@mui/icons-material/Place';
 
-import Icon from '@mdi/react';
-import { mdiPhone, mdiAt, mdiLinkVariant, mdiMapMarker } from '@mdi/js';
 import '../styles/cv.css';
 
 export const PersonalDetails = ({ personalDetails }) => {

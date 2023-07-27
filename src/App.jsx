@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { PersonalDetailsForm } from './components/PersonalDetailsForm.jsx';
-import { SummaryForm } from './components/SummaryForm.jsx';
-import { EducationForm } from './components/EducationForm.jsx';
-import { PersonalDetails } from './components/PersonalDetails.jsx';
-import { Summary } from './components/Summary.jsx';
-import { Education } from './components/Education.jsx';
+import { PersonalDetailsForm } from './sections/PersonalDetailsForm.jsx';
+import { SummaryForm } from './sections/SummaryForm.jsx';
+import { EducationForm } from './sections/EducationForm.jsx';
+import { PersonalDetails } from './sections/PersonalDetails.jsx';
+import { Summary } from './sections/Summary.jsx';
+import { Education } from './sections/Education.jsx';
 
 import { personal, summary, education } from './data/data.js';
 
@@ -16,29 +16,9 @@ function App() {
   const [summaryContent, setSummaryContent] = useState(summary);
   const [educationDetails, setEducationDetails] = useState(education);
 
-  const handlePersonalInputChange = (e) => {
+  const handleInputChange = (e, setFunction) => {
     const property = e.target.id;
-    setPersonalDetails((prevState) => {
-      return {
-        ...prevState,
-        [property]: e.target.value,
-      };
-    });
-  };
-
-  const handleSummaryInputChange = (e) => {
-    const property = e.target.id;
-    setSummaryContent((prevState) => {
-      return {
-        ...prevState,
-        [property]: e.target.value,
-      };
-    });
-  };
-
-  const handleEducationInputChange = (e) => {
-    const property = e.target.id;
-    setEducationDetails((prevState) => {
+    setFunction((prevState) => {
       return {
         ...prevState,
         [property]: e.target.value,
@@ -49,18 +29,20 @@ function App() {
   return (
     <div className="app">
       <div className="cv-forms">
-        <PersonalDetailsForm onInputChange={(e) => handlePersonalInputChange(e)} />
-        <SummaryForm onInputChange={(e) => handleSummaryInputChange(e)} />
-        <EducationForm onInputChange={(e) => handleEducationInputChange(e)} />
+        <PersonalDetailsForm setPersonalDetails={setPersonalDetails} />
+        <SummaryForm onInputChange={(e) => handleInputChange(e, setSummaryContent)} />
+        <EducationForm onInputChange={(e) => handleInputChange(e, setEducationDetails)} />
       </div>
-      <div className="cv-display">
-        <PersonalDetails personalDetails={personalDetails} />
-        <div className="general-info">
-          <div className="primary-info">
-            <Summary summaryContent={summaryContent} />
-          </div>
-          <div className="secondary-info">
-            <Education educationDetails={educationDetails} />
+      <div className="cv-wrapper">
+        <div className="cv">
+          <PersonalDetails personalDetails={personalDetails} />
+          <div className="general-info">
+            <div className="primary-info">
+              <Summary summaryContent={summaryContent} />
+            </div>
+            <div className="secondary-info">
+              <Education educationDetails={educationDetails} />
+            </div>
           </div>
         </div>
       </div>
