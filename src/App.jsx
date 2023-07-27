@@ -16,6 +16,8 @@ function App() {
   const [summaryContent, setSummaryContent] = useState(summary);
   const [educationDetails, setEducationDetails] = useState(education);
 
+  const [isSummaryVisible, setIsSummaryVisible] = useState(true);
+
   const handleInputChange = (e, setFunction) => {
     const property = e.target.id;
     setFunction((prevState) => {
@@ -30,7 +32,12 @@ function App() {
     <div className="app">
       <div className="cv-forms">
         <PersonalDetailsForm setPersonalDetails={setPersonalDetails} />
-        <SummaryForm setSummaryContent={setSummaryContent} />
+        <SummaryForm
+          summaryContent={summaryContent}
+          setSummaryContent={setSummaryContent}
+          isSummaryVisible={isSummaryVisible}
+          setIsSummaryVisible={setIsSummaryVisible}
+        />
         <EducationForm setEducationDetails={setEducationDetails} />
       </div>
       <div className="cv-wrapper">
@@ -38,7 +45,7 @@ function App() {
           <PersonalDetails personalDetails={personalDetails} />
           <div className="general-info">
             <div className="primary-info">
-              <Summary summaryContent={summaryContent} />
+              {summaryContent && isSummaryVisible && <Summary summaryContent={summaryContent} />}
             </div>
             <div className="secondary-info">
               <Education educationDetails={educationDetails} />

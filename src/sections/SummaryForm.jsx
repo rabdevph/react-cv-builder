@@ -2,28 +2,31 @@ import { useState } from 'react';
 
 import { TextArea } from '../components/TextArea.jsx';
 
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 import '../styles/forms.css';
 
-export const SummaryForm = ({ setSummaryContent }) => {
+export const SummaryForm = ({ summaryContent, setSummaryContent, isSummaryVisible, setIsSummaryVisible }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [formValue, setFormValue] = useState({
-    content: '',
-  });
+  const [formValue, setFormValue] = useState('');
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
   };
 
   const handleInputChange = (e) => {
-    setFormValue({
-      content: e.target.value,
-    });
+    setFormValue(e.target.value);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // update summary object -> [data.js]
+    // update summary -> [data.js]
     setSummaryContent(formValue);
+  };
+
+  const toggleSummaryVisibility = () => {
+    setIsSummaryVisible((prevState) => !prevState);
   };
 
   return (
@@ -33,7 +36,35 @@ export const SummaryForm = ({ setSummaryContent }) => {
       </button>
       <form className={`form ${collapsed ? 'collapsed' : ''}`} onSubmit={handleFormSubmit}>
         <TextArea id="content" label="Summary" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
+        <div className="controls">
+          {summaryContent && (
+            <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
+              {isSummaryVisible && (
+                <VisibilityOffIcon
+                  sx={{
+                    fontSize: 18,
+                    color: '#3b82f6',
+                    '&:hover': { color: '#2563eb' },
+                    '&:active': { color: '#3b82f6' },
+                  }}
+                />
+              )}
+
+              {!isSummaryVisible && (
+                <VisibilityIcon
+                  sx={{
+                    fontSize: 18,
+                    color: '#3b82f6',
+                    '&:hover': { color: '#2563eb' },
+                    '&:active': { color: '#3b82f6' },
+                  }}
+                />
+              )}
+            </button>
+          )}
+
+          <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
+        </div>
       </form>
     </div>
   );

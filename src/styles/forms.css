@@ -81,14 +81,28 @@
   border: 2px solid #60a5fa;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.visibility-button {
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
 .update-button {
-  align-self: flex-end;
   background-color: #3b82f6;
   border: none;
   color: #ffffff;
   cursor: pointer;
   font-size: 0.675rem;
   font-weight: bold;
+  margin-left: auto;
   width: max-content;
   padding: 8px;
 }
