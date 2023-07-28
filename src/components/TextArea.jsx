@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const TextArea = ({ id, label, collapsed, handleInputChange }) => {
+export const TextArea = ({ id, label, handleInputChange }) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = () => {
@@ -11,7 +11,7 @@ export const TextArea = ({ id, label, collapsed, handleInputChange }) => {
     setFocused(false);
   };
   return (
-    <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
+    <>
       <textarea
         className={`form-input textarea ${focused ? 'focused' : ''}`}
         id={id}
@@ -20,6 +20,6 @@ export const TextArea = ({ id, label, collapsed, handleInputChange }) => {
         onBlur={handleBlur}
         onChange={handleInputChange}
       ></textarea>
-    </div>
+    </>
   );
 };

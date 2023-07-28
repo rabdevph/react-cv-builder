@@ -7,14 +7,15 @@ import { PersonalDetails } from './sections/PersonalDetails.jsx';
 import { Summary } from './sections/Summary.jsx';
 import { Education } from './sections/Education.jsx';
 
-import { personal, summary, education } from './data/data.js';
+import { data } from './data/data.js';
 
 import './App.css';
 
 function App() {
-  const [personalDetails, setPersonalDetails] = useState(personal);
-  const [summaryContent, setSummaryContent] = useState(summary);
-  const [educationDetails, setEducationDetails] = useState(education);
+  const { personal, summary, education } = data;
+  const [personalData, setPersonalData] = useState(personal);
+  const [summaryData, setSummaryData] = useState(summary);
+  const [educationData, setEducationData] = useState(education);
 
   const [isSummaryVisible, setIsSummaryVisible] = useState(true);
 
@@ -31,24 +32,24 @@ function App() {
   return (
     <div className="app">
       <div className="cv-forms">
-        <PersonalDetailsForm setPersonalDetails={setPersonalDetails} />
+        <PersonalDetailsForm setPersonalData={setPersonalData} />
         <SummaryForm
-          summaryContent={summaryContent}
-          setSummaryContent={setSummaryContent}
+          summaryData={summaryData}
+          setSummaryData={setSummaryData}
           isSummaryVisible={isSummaryVisible}
           setIsSummaryVisible={setIsSummaryVisible}
         />
-        <EducationForm setEducationDetails={setEducationDetails} />
+        <EducationForm educationData={educationData} setEducationData={setEducationData} />
       </div>
       <div className="cv-wrapper">
         <div className="cv">
-          <PersonalDetails personalDetails={personalDetails} />
+          <PersonalDetails personalData={personalData} />
           <div className="general-info">
             <div className="primary-info">
-              {summaryContent && isSummaryVisible && <Summary summaryContent={summaryContent} />}
+              {summaryData && isSummaryVisible && <Summary summaryData={summaryData} />}
             </div>
             <div className="secondary-info">
-              <Education educationDetails={educationDetails} />
+              {educationData.length > 0 && <Education educationData={educationData} />}
             </div>
           </div>
         </div>

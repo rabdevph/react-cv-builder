@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import { TextArea } from '../components/TextArea.jsx';
 
@@ -7,22 +7,26 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import '../styles/forms.css';
 
-export const SummaryForm = ({ summaryContent, setSummaryContent, isSummaryVisible, setIsSummaryVisible }) => {
+export const SummaryForm = ({ summaryData, setSummaryData, isSummaryVisible, setIsSummaryVisible }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [formValue, setFormValue] = useState('');
+  const [formValue, setFormValue] = useState({});
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
   };
 
   const handleInputChange = (e) => {
-    setFormValue(e.target.value);
+    setFormValue({
+      content: e.target.value,
+    });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // update summary -> [data.js]
-    setSummaryContent(formValue);
+    // update summary object -> [data.js]
+    setSummaryData(formValue);
+    setFormValue({});
+    e.target.reset();
   };
 
   const toggleSummaryVisibility = () => {
@@ -34,38 +38,40 @@ export const SummaryForm = ({ summaryContent, setSummaryContent, isSummaryVisibl
       <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         SUMMARY
       </button>
-      <form className={`form ${collapsed ? 'collapsed' : ''}`} onSubmit={handleFormSubmit}>
-        <TextArea id="content" label="Summary" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <div className="controls">
-          {summaryContent && (
-            <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
-              {isSummaryVisible && (
-                <VisibilityOffIcon
-                  sx={{
-                    fontSize: 18,
-                    color: '#3b82f6',
-                    '&:hover': { color: '#2563eb' },
-                    '&:active': { color: '#3b82f6' },
-                  }}
-                />
-              )}
+      <div className={`form-collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
+        <form className="form" onSubmit={handleFormSubmit}>
+          <TextArea id="content" label="Summary" handleInputChange={handleInputChange} />
+          <div className="controls">
+            {summaryData && (
+              <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
+                {isSummaryVisible && (
+                  <VisibilityOffIcon
+                    sx={{
+                      fontSize: 18,
+                      color: '#3b82f6',
+                      '&:hover': { color: '#2563eb' },
+                      '&:active': { color: '#3b82f6' },
+                    }}
+                  />
+                )}
 
-              {!isSummaryVisible && (
-                <VisibilityIcon
-                  sx={{
-                    fontSize: 18,
-                    color: '#3b82f6',
-                    '&:hover': { color: '#2563eb' },
-                    '&:active': { color: '#3b82f6' },
-                  }}
-                />
-              )}
-            </button>
-          )}
+                {!isSummaryVisible && (
+                  <VisibilityIcon
+                    sx={{
+                      fontSize: 18,
+                      color: '#3b82f6',
+                      '&:hover': { color: '#2563eb' },
+                      '&:active': { color: '#3b82f6' },
+                    }}
+                  />
+                )}
+              </button>
+            )}
 
-          <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
-        </div>
-      </form>
+            <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

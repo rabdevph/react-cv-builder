@@ -4,7 +4,7 @@ import { Input } from '../components/Input.jsx';
 
 import '../styles/forms.css';
 
-export const PersonalDetailsForm = ({ setPersonalDetails }) => {
+export const PersonalDetailsForm = ({ setPersonalData }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [formValues, setFormValues] = useState({
     name: '',
@@ -31,8 +31,8 @@ export const PersonalDetailsForm = ({ setPersonalDetails }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // update personal object -> [data.js]
-    setPersonalDetails(formValues);
+    // update data.personal object -> [data.js]
+    setPersonalData(formValues);
   };
 
   return (
@@ -40,15 +40,17 @@ export const PersonalDetailsForm = ({ setPersonalDetails }) => {
       <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         PERSONAL DETAILS
       </button>
-      <form className={`form ${collapsed ? 'collapsed' : ''}`} onSubmit={handleFormSubmit}>
-        <Input id="name" label="name" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <Input id="profession" label="profession" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <Input id="phone" label="phone number" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <Input id="email" label="email address" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <Input id="github" label="github profile link" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <Input id="address" label="address" collapsed={collapsed} handleInputChange={handleInputChange} />
-        <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
-      </form>
+      <div className={`form-collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
+        <form className="form" onSubmit={handleFormSubmit}>
+          <Input id="name" label="name" handleInputChange={handleInputChange} />
+          <Input id="profession" label="profession" handleInputChange={handleInputChange} />
+          <Input id="phone" label="phone number" handleInputChange={handleInputChange} />
+          <Input id="email" label="email address" handleInputChange={handleInputChange} />
+          <Input id="github" label="github profile link" handleInputChange={handleInputChange} />
+          <Input id="address" label="address" handleInputChange={handleInputChange} />
+          <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
+        </form>
+      </div>
     </div>
   );
 };

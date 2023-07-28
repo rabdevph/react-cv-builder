@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const Input = ({ id, label, collapsed, handleInputChange }) => {
+export const Input = ({ id, label, handleInputChange }) => {
   const [focusedInput, setFocusedInput] = useState(null);
 
   const handleFocus = (inputId) => {
@@ -12,7 +12,7 @@ export const Input = ({ id, label, collapsed, handleInputChange }) => {
   };
 
   return (
-    <div className={`form-input-wrapper ${collapsed ? 'collapsed' : ''}`}>
+    <>
       <input
         className={`form-input ${focusedInput === id ? 'focused' : ''}`}
         type="text"
@@ -23,6 +23,6 @@ export const Input = ({ id, label, collapsed, handleInputChange }) => {
         onBlur={handleBlur}
         onChange={handleInputChange}
       />
-    </div>
+    </>
   );
 };

@@ -7,11 +7,24 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.form-collapse-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   width: 300px;
   max-width: 480px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+  visibility: hidden;
+}
+
+.form-collapse-wrapper.collapsed {
+  max-height: 500px;
+  padding: 12px;
+  visibility: visible;
 }
 
 .form.collapsed {
@@ -44,14 +57,6 @@
 
 .form-collapse-btn.collapsed::after {
   content: '\2212';
-}
-
-.form-input-wrapper {
-  visibility: hidden;
-}
-
-.form-input-wrapper.collapsed {
-  visibility: visible;
 }
 
 .form-label {
@@ -95,7 +100,8 @@
   border: none;
 }
 
-.update-button {
+.update-button,
+.add-button {
   background-color: #3b82f6;
   border: none;
   color: #ffffff;
@@ -103,6 +109,7 @@
   font-size: 0.675rem;
   font-weight: bold;
   margin-left: auto;
+  outline: none;
   width: max-content;
   padding: 8px;
 }
@@ -113,4 +120,35 @@
 
 .update-button:active {
   background-color: #3b82f6;
+}
+
+.delete-button {
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+}
+
+.education-list-degree {
+  display: flex;
+  width: 100%;
+}
+
+.degree {
+  font-size: 0.75rem;
+}
+
+.education-list-controls {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
 }

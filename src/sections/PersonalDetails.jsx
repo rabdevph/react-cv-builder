@@ -7,8 +7,8 @@ import PlaceIcon from '@mui/icons-material/Place';
 
 import '../styles/cv.css';
 
-export const PersonalDetails = ({ personalDetails }) => {
-  const { name, profession, phone, email, github, address } = personalDetails;
+export const PersonalDetails = ({ personalData }) => {
+  const { name, profession, phone, email, github, address } = personalData;
 
   return (
     <div className="personal">
