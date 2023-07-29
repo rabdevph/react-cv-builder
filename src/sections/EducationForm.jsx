@@ -13,11 +13,13 @@ export const EducationForm = ({ educationData, setEducationData }) => {
   const [formValues, setFormValues] = useState({
     id: uuidv4(),
     isVisible: true,
-    degree: '',
-    school: '',
-    country: '',
-    'start-year': '',
-    'end-year': '',
+    details: {
+      degree: '',
+      school: '',
+      country: '',
+      'start-year': '',
+      'end-year': '',
+    },
   });
 
   const toggleCollapse = () => {
@@ -29,7 +31,10 @@ export const EducationForm = ({ educationData, setEducationData }) => {
     setFormValues((prevState) => {
       return {
         ...prevState,
-        [id]: value,
+        details: {
+          ...prevState.details,
+          [id]: value,
+        },
       };
     });
   };
@@ -64,11 +69,13 @@ export const EducationForm = ({ educationData, setEducationData }) => {
     setFormValues({
       id: uuidv4(),
       isVisible: true,
-      degree: '',
-      school: '',
-      country: '',
-      'start-year': '',
-      'end-year': '',
+      details: {
+        degree: '',
+        school: '',
+        country: '',
+        'start-year': '',
+        'end-year': '',
+      },
     });
 
     e.target.reset();
@@ -91,7 +98,8 @@ export const EducationForm = ({ educationData, setEducationData }) => {
         {educationData.length > 0 && (
           <div className="education-list">
             {educationData.map((eduData) => {
-              const { id, isVisible, degree } = eduData;
+              const { id, isVisible, details } = eduData;
+              const { degree } = details;
               return (
                 <div className="education-list-degree" key={id}>
                   <p className="degree">{degree}</p>

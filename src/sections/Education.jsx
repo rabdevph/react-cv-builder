@@ -8,7 +8,8 @@ export const Education = ({ educationData }) => {
         <div className="horizontal-line"></div>
       </div>
       {educationData.map((eduData) => {
-        const { id, isVisible, degree, school, country, 'start-year': startYear, 'end-year': endYear } = eduData;
+        const { id, isVisible, details } = eduData;
+        const { degree, school, country, 'start-year': startYear, 'end-year': endYear } = details;
         return (
           isVisible && (
             <div className="education-content" key={id}>

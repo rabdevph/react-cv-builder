@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import { TextArea } from '../components/TextArea.jsx';
 
@@ -7,17 +7,24 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import '../styles/forms.css';
 
-export const SummaryForm = ({ summaryData, setSummaryData, isSummaryVisible, setIsSummaryVisible }) => {
+export const SummaryForm = ({ summaryData, setSummaryData }) => {
+  const defaultFormValues = {
+    isVisible: true,
+    content: '',
+  };
   const [collapsed, setCollapsed] = useState(false);
-  const [formValue, setFormValue] = useState({});
+  const [formValue, setFormValue] = useState(defaultFormValues);
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
   };
 
   const handleInputChange = (e) => {
-    setFormValue({
-      content: e.target.value,
+    setFormValue((prevState) => {
+      return {
+        ...prevState,
+        content: e.target.value,
+      };
     });
   };
 
@@ -25,12 +32,18 @@ export const SummaryForm = ({ summaryData, setSummaryData, isSummaryVisible, set
     e.preventDefault();
     // update summary object -> [data.js]
     setSummaryData(formValue);
-    setFormValue({});
+    // clear form values
+    setFormValue(defaultFormValues);
     e.target.reset();
   };
 
   const toggleSummaryVisibility = () => {
-    setIsSummaryVisible((prevState) => !prevState);
+    setSummaryData((prevState) => {
+      return {
+        ...prevState,
+        isVisible: !prevState.isVisible,
+      };
+    });
   };
 
   return (
@@ -44,7 +57,7 @@ export const SummaryForm = ({ summaryData, setSummaryData, isSummaryVisible, set
           <div className="controls">
             {summaryData && (
               <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
-                {isSummaryVisible && (
+                {summaryData.isVisible && (
                   <VisibilityOffIcon
                     sx={{
                       fontSize: 18,
@@ -55,7 +68,7 @@ export const SummaryForm = ({ summaryData, setSummaryData, isSummaryVisible, set
                   />
                 )}
 
-                {!isSummaryVisible && (
+                {!summaryData.isVisible && (
                   <VisibilityIcon
                     sx={{
                       fontSize: 18,

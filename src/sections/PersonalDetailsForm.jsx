@@ -5,15 +5,16 @@ import { Input } from '../components/Input.jsx';
 import '../styles/forms.css';
 
 export const PersonalDetailsForm = ({ setPersonalData }) => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [formValues, setFormValues] = useState({
+  const defaultFormValues = {
     name: '',
     profession: '',
     phone: '',
     email: '',
     github: '',
     address: '',
-  });
+  };
+  const [collapsed, setCollapsed] = useState(false);
+  const [formValues, setFormValues] = useState(defaultFormValues);
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
@@ -33,6 +34,9 @@ export const PersonalDetailsForm = ({ setPersonalData }) => {
     e.preventDefault();
     // update data.personal object -> [data.js]
     setPersonalData(formValues);
+    // clear form values
+    setFormValues(defaultFormValues);
+    e.target.reset();
   };
 
   return (
