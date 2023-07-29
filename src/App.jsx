@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { PersonalDetailsForm } from './sections/PersonalDetailsForm.jsx';
 import { SummaryForm } from './sections/SummaryForm.jsx';
 import { EducationForm } from './sections/EducationForm.jsx';
+import { WorkExperienceForm } from './sections/WorkExperienceForm.jsx';
 import { PersonalDetails } from './sections/PersonalDetails.jsx';
 import { Summary } from './sections/Summary.jsx';
 import { Education } from './sections/Education.jsx';
@@ -12,10 +13,11 @@ import { data } from './data/data.js';
 import './App.css';
 
 function App() {
-  const { personal, summary, education } = data;
+  const { personal, summary, education, workExperience } = data;
   const [personalData, setPersonalData] = useState(personal);
   const [summaryData, setSummaryData] = useState(summary);
   const [educationData, setEducationData] = useState(education);
+  const [workExperienceData, setWorkExperienceData] = useState(workExperience);
 
   return (
     <div className="app">
@@ -23,6 +25,7 @@ function App() {
         <PersonalDetailsForm setPersonalData={setPersonalData} />
         <SummaryForm summaryData={summaryData} setSummaryData={setSummaryData} />
         <EducationForm educationData={educationData} setEducationData={setEducationData} />
+        <WorkExperienceForm workExperienceData={workExperienceData} setWorkExperienceData={setWorkExperienceData} />
       </div>
       <div className="cv-wrapper">
         <div className="cv">

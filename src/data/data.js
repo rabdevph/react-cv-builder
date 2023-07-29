@@ -38,4 +38,18 @@ export const data = {
       },
     },
   ],
+  workExperience: [
+    {
+      id: uuidv4(),
+      isVisible: true,
+      details: {
+        position: 'Software Developer',
+        company: 'Sopweyr AE',
+        description: 'Sopweyr AE is a software development company stationed in Dubai, United Arab Emirates...',
+        'start-year': '2016',
+        'end-year': '2019',
+        tasks: ['Developed...', 'Deployed...', 'Maintained...'],
+      },
+    },
+  ],
 };
