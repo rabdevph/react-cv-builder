@@ -4,7 +4,7 @@ import { Input } from '../components/Input.jsx';
 
 import '../styles/forms.css';
 
-export const PersonalDetailsForm = ({ setPersonalData }) => {
+export const PersonalDetailsForm = ({ updateData }) => {
   const defaultFormValues = {
     name: '',
     profession: '',
@@ -32,9 +32,7 @@ export const PersonalDetailsForm = ({ setPersonalData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // update data.personal object -> [data.js]
-    setPersonalData(formValues);
-    // clear form values
+    updateData('personal', formValues);
     setFormValues(defaultFormValues);
     e.target.reset();
   };

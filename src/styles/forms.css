@@ -143,11 +143,33 @@
   width: 100%;
 }
 
-.degree {
+.education-list-degree .degree {
   font-size: 0.75rem;
 }
 
 .education-list-controls {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.work-experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+}
+
+.work-experience-list-position {
+  display: flex;
+  width: 100%;
+}
+
+.work-experience-list-position .position {
+  font-size: 0.75rem;
+}
+
+.work-experience-list-controls {
   display: flex;
   gap: 4px;
   margin-left: auto;

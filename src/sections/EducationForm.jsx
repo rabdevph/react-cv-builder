@@ -8,9 +8,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-export const EducationForm = ({ educationData, setEducationData }) => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [formValues, setFormValues] = useState({
+export const EducationForm = ({ data, updateData }) => {
+  const { education } = data;
+  const defaultFormValues = {
     id: uuidv4(),
     isVisible: true,
     details: {
@@ -20,7 +20,9 @@ export const EducationForm = ({ educationData, setEducationData }) => {
       'start-year': '',
       'end-year': '',
     },
-  });
+  };
+  const [collapsed, setCollapsed] = useState(false);
+  const [formValues, setFormValues] = useState(defaultFormValues);
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
@@ -39,46 +41,30 @@ export const EducationForm = ({ educationData, setEducationData }) => {
     });
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    education ? updateData('education', [...education, formValues]) : updateData('education', [formValues]);
+    setFormValues(defaultFormValues);
+    e.target.reset();
+  };
+
   const toggleVisibility = (id) => {
-    setEducationData((prevData) =>
-      prevData.map((eduData) => {
+    if (education) {
+      const updatedEducation = education.map((eduData) => {
         if (eduData.id === id) {
-          return {
-            ...eduData,
-            isVisible: !eduData.isVisible,
-          };
+          return { ...eduData, isVisible: !eduData.isVisible };
         }
         return eduData;
-      }),
-    );
+      });
+      updateData('education', updatedEducation);
+    }
   };
 
   const deleteEducation = (id) => {
-    setEducationData((prevData) => prevData.filter((eduData) => eduData.id !== id));
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    // update education array -> [data.js]
-    setEducationData((prevState) => {
-      return [...prevState, formValues];
-    });
-
-    // clear form values
-    setFormValues({
-      id: uuidv4(),
-      isVisible: true,
-      details: {
-        degree: '',
-        school: '',
-        country: '',
-        'start-year': '',
-        'end-year': '',
-      },
-    });
-
-    e.target.reset();
+    if (education) {
+      const updatedEducation = education.filter((eduData) => eduData.id !== id);
+      updateData('education', updatedEducation);
+    }
   };
 
   return (
@@ -95,9 +81,9 @@ export const EducationForm = ({ educationData, setEducationData }) => {
           <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
           <input type="submit" className="add-button" id="add-btn" value="ADD" />
         </form>
-        {educationData.length > 0 && (
+        {Array.isArray(education) && education.length !== 0 && (
           <div className="education-list">
-            {educationData.map((eduData) => {
+            {education.map((eduData) => {
               const { id, isVisible, details } = eduData;
               const { degree } = details;
               return (

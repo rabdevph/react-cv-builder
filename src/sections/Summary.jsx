@@ -1,15 +1,24 @@
 import React from 'react';
 
-export const Summary = ({ summaryData }) => {
+export const Summary = ({ data }) => {
+  const { summary } = data;
+  const { isVisible = true, content = '' } = summary || {};
   return (
-    summaryData.isVisible && (
-      <div className="summary">
-        <div className="heading">
-          <p className="header">SUMMARY</p>
-          <div className="horizontal-line"></div>
+    <div className="summary-wrapper">
+      {!summary && (
+        <div className="summary-empty">
+          <p>SUMMARY</p>
         </div>
-        <p className="summary-content">{summaryData.content}</p>
-      </div>
-    )
+      )}
+      {summary && isVisible && (
+        <div className="summary">
+          <div className="heading">
+            <p className="header">SUMMARY</p>
+            <div className="horizontal-line"></div>
+          </div>
+          <p className="summary-content">{content}</p>
+        </div>
+      )}
+    </div>
   );
 };

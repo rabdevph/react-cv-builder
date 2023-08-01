@@ -23,17 +23,3 @@
   flex-direction: column;
   gap: 48px;
 }
-
-.general-info {
-  background-color: #ffffff;
-  display: flex;
-  gap: 24px;
-}
-
-.primary-info {
-  flex: 2;
-}
-
-.secondary-info {
-  flex: 1;
-}

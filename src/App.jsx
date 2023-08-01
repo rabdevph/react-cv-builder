@@ -8,32 +8,39 @@ import { PersonalDetails } from './sections/PersonalDetails.jsx';
 import { Summary } from './sections/Summary.jsx';
 import { Education } from './sections/Education.jsx';
 
-import { data } from './data/data.js';
-
 import './App.css';
 
 function App() {
-  const { personal, summary, education, workExperience } = data;
-  const [personalData, setPersonalData] = useState(personal);
-  const [summaryData, setSummaryData] = useState(summary);
-  const [educationData, setEducationData] = useState(education);
-  const [workExperienceData, setWorkExperienceData] = useState(workExperience);
+  const [data, setData] = useState({});
+
+  const updateData = (property, data) => {
+    setData((prevState) => {
+      return {
+        ...prevState,
+        [property]: data,
+      };
+    });
+  };
+
+  console.log(data);
 
   return (
     <div className="app">
       <div className="cv-forms">
-        <PersonalDetailsForm setPersonalData={setPersonalData} />
-        <SummaryForm summaryData={summaryData} setSummaryData={setSummaryData} />
-        <EducationForm educationData={educationData} setEducationData={setEducationData} />
-        <WorkExperienceForm workExperienceData={workExperienceData} setWorkExperienceData={setWorkExperienceData} />
+        <PersonalDetailsForm updateData={updateData} />
+        <SummaryForm data={data} updateData={updateData} />
+        <EducationForm data={data} updateData={updateData} />
+        <WorkExperienceForm data={data} updateData={updateData} />
       </div>
       <div className="cv-wrapper">
         <div className="cv">
-          <PersonalDetails personalData={personalData} />
-          <div className="general-info">
-            <div className="primary-info">{summaryData.content && <Summary summaryData={summaryData} />}</div>
+          <PersonalDetails data={data} />
+          <div className="general-info-wrapper">
+            <div className="primary-info">
+              <Summary data={data} />
+            </div>
             <div className="secondary-info">
-              {educationData.length > 0 && <Education educationData={educationData} />}
+              <Education data={data} />
             </div>
           </div>
         </div>

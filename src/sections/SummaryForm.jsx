@@ -7,7 +7,9 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import '../styles/forms.css';
 
-export const SummaryForm = ({ summaryData, setSummaryData }) => {
+export const SummaryForm = ({ data, updateData }) => {
+  const { summary } = data;
+  const { isVisible } = summary || {};
   const defaultFormValues = {
     isVisible: true,
     content: '',
@@ -30,20 +32,13 @@ export const SummaryForm = ({ summaryData, setSummaryData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // update summary object -> [data.js]
-    setSummaryData(formValue);
-    // clear form values
+    updateData('summary', formValue);
     setFormValue(defaultFormValues);
     e.target.reset();
   };
 
   const toggleSummaryVisibility = () => {
-    setSummaryData((prevState) => {
-      return {
-        ...prevState,
-        isVisible: !prevState.isVisible,
-      };
-    });
+    updateData('summary', { ...summary, isVisible: !isVisible });
   };
 
   return (
@@ -55,9 +50,9 @@ export const SummaryForm = ({ summaryData, setSummaryData }) => {
         <form className="form" onSubmit={handleFormSubmit}>
           <TextArea id="content" label="Summary" handleInputChange={handleInputChange} />
           <div className="controls">
-            {summaryData && (
+            {summary && (
               <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
-                {summaryData.isVisible && (
+                {isVisible && (
                   <VisibilityOffIcon
                     sx={{
                       fontSize: 18,
@@ -68,7 +63,7 @@ export const SummaryForm = ({ summaryData, setSummaryData }) => {
                   />
                 )}
 
-                {!summaryData.isVisible && (
+                {!isVisible && (
                   <VisibilityIcon
                     sx={{
                       fontSize: 18,
