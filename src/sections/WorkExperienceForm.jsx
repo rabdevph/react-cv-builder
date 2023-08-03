@@ -10,14 +10,15 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export const WorkExperienceForm = ({ data, updateData }) => {
-  const { workExperience } = data;
+  const { experience } = data;
   const defaultFormValues = {
     id: uuidv4(),
     isVisible: true,
     details: {
-      position: '',
+      title: '',
       company: '',
       description: '',
+      location: '',
       'start-year': '',
       'end-year': '',
       tasks: [],
@@ -25,6 +26,10 @@ export const WorkExperienceForm = ({ data, updateData }) => {
   };
   const [collapsed, setCollapsed] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
+
+  const isNotEmptyArray = (obj) => {
+    return Array.isArray(obj) && obj.length !== 0;
+  };
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
@@ -58,29 +63,29 @@ export const WorkExperienceForm = ({ data, updateData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    workExperience
-      ? updateData('workExperience', [...workExperience, formValues])
-      : updateData('workExperience', [formValues]);
+    isNotEmptyArray(experience)
+      ? updateData('experience', [...experience, formValues])
+      : updateData('experience', [formValues]);
     setFormValues(defaultFormValues);
     e.target.reset();
   };
 
   const toggleVisibility = (id) => {
-    if (workExperience) {
-      const updatedEducation = workExperience.map((workExpData) => {
+    if (isNotEmptyArray(experience)) {
+      const updatedExperience = experience.map((workExpData) => {
         if (workExpData.id === id) {
           return { ...workExpData, isVisible: !workExpData.isVisible };
         }
         return workExpData;
       });
-      updateData('workExperience', updatedEducation);
+      updateData('experience', updatedExperience);
     }
   };
 
   const deleteWorkExperience = (id) => {
-    if (workExperience) {
-      const updatedEducation = workExperience.filter((workExpData) => workExpData.id !== id);
-      updateData('workExperience', updatedEducation);
+    if (isNotEmptyArray(experience)) {
+      const updatedExperience = experience.filter((workExpData) => workExpData.id !== id);
+      updateData('experience', updatedExperience);
     }
   };
 
@@ -92,9 +97,10 @@ export const WorkExperienceForm = ({ data, updateData }) => {
         </button>
         <div className={`form-collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
           <form className="form" onSubmit={handleFormSubmit}>
-            <Input id="position" label="position" handleInputChange={handleInputChange} />
+            <Input id="title" label="position" handleInputChange={handleInputChange} />
             <Input id="company" label="company" handleInputChange={handleInputChange} />
             <Input id="description" label="description" handleInputChange={handleInputChange} />
+            <Input id="location" label="location" handleInputChange={handleInputChange} />
             <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
             <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
             <TextArea
@@ -104,14 +110,14 @@ export const WorkExperienceForm = ({ data, updateData }) => {
             />
             <input type="submit" className="add-button" id="add-btn" value="ADD" />
           </form>
-          {Array.isArray(workExperience) && workExperience.length !== 0 && (
+          {isNotEmptyArray(experience) && (
             <div className="work-experience-list">
-              {workExperience.map((workExpData) => {
+              {experience.map((workExpData) => {
                 const { id, isVisible, details } = workExpData;
-                const { position } = details;
+                const { title } = details;
                 return (
                   <div className="work-experience-list-position" key={id}>
-                    <p className="position">{position}</p>
+                    <p className="position">{title}</p>
                     <div className="work-experience-list-controls">
                       {' '}
                       <button type="button" className="visibility-button" onClick={() => toggleVisibility(id)}>

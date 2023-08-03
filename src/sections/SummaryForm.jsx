@@ -17,6 +17,10 @@ export const SummaryForm = ({ data, updateData }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [formValue, setFormValue] = useState(defaultFormValues);
 
+  const isEmptyObject = (obj) => {
+    return Object.keys(obj).length === 0;
+  };
+
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
   };
@@ -50,7 +54,7 @@ export const SummaryForm = ({ data, updateData }) => {
         <form className="form" onSubmit={handleFormSubmit}>
           <TextArea id="content" label="Summary" handleInputChange={handleInputChange} />
           <div className="controls">
-            {summary && (
+            {!isEmptyObject(summary) && (
               <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
                 {isVisible && (
                   <VisibilityOffIcon

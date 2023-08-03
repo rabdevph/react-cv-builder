@@ -3,23 +3,28 @@ import React from 'react';
 import PhoneIcon from '@mui/icons-material/Phone';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PlaceIcon from '@mui/icons-material/Place';
 
 import '../styles/cv.css';
 
 export const PersonalDetails = ({ data }) => {
   const { personal } = data;
-  const { name, profession, phone, email, github, address } = personal || {};
+  const { name, profession, phone, email, github, linkedin, address } = personal || {};
+
+  const isEmptyObject = (obj) => {
+    return Object.keys(obj).length === 0;
+  };
 
   return (
-    <div className="personal-wrapper">
-      {!personal && (
-        <div className="personal-empty">
+    <>
+      {isEmptyObject(personal) && (
+        <div className="section-placeholder">
           <p>PERSONAL DETAILS</p>
         </div>
       )}
-      {personal && (
-        <div className="personal">
+      {!isEmptyObject(personal) && (
+        <div className="personal section-wrapper">
           <p className="personal-name">{name.toUpperCase()}</p>
           <p className="personal-profession">{profession.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}</p>
           <div className="personal-details">
@@ -36,12 +41,16 @@ export const PersonalDetails = ({ data }) => {
               <p>{github}</p>
             </div>
             <div className="personal-details-item">
+              <LinkedInIcon sx={{ fontSize: 12, color: '#1f2937' }} />
+              <p>{linkedin}</p>
+            </div>
+            <div className="personal-details-item">
               <PlaceIcon sx={{ fontSize: 12, color: '#1f2937' }} />
               <p>{address.replace(/(^|\s|\.)\S/g, (match) => match.toUpperCase())}</p>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

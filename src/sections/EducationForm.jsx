@@ -24,6 +24,10 @@ export const EducationForm = ({ data, updateData }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
 
+  const isNotEmptyArray = (obj) => {
+    return Array.isArray(obj) && obj.length !== 0;
+  };
+
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
   };
@@ -49,7 +53,7 @@ export const EducationForm = ({ data, updateData }) => {
   };
 
   const toggleVisibility = (id) => {
-    if (education) {
+    if (isNotEmptyArray(education)) {
       const updatedEducation = education.map((eduData) => {
         if (eduData.id === id) {
           return { ...eduData, isVisible: !eduData.isVisible };
@@ -61,7 +65,7 @@ export const EducationForm = ({ data, updateData }) => {
   };
 
   const deleteEducation = (id) => {
-    if (education) {
+    if (isNotEmptyArray(education)) {
       const updatedEducation = education.filter((eduData) => eduData.id !== id);
       updateData('education', updatedEducation);
     }
@@ -81,7 +85,7 @@ export const EducationForm = ({ data, updateData }) => {
           <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
           <input type="submit" className="add-button" id="add-btn" value="ADD" />
         </form>
-        {Array.isArray(education) && education.length !== 0 && (
+        {isNotEmptyArray(education) && (
           <div className="education-list">
             {education.map((eduData) => {
               const { id, isVisible, details } = eduData;

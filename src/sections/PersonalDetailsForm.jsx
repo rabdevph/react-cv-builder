@@ -11,6 +11,7 @@ export const PersonalDetailsForm = ({ updateData }) => {
     phone: '',
     email: '',
     github: '',
+    linkedin: '',
     address: '',
   };
   const [collapsed, setCollapsed] = useState(false);
@@ -48,7 +49,8 @@ export const PersonalDetailsForm = ({ updateData }) => {
           <Input id="profession" label="profession" handleInputChange={handleInputChange} />
           <Input id="phone" label="phone number" handleInputChange={handleInputChange} />
           <Input id="email" label="email address" handleInputChange={handleInputChange} />
-          <Input id="github" label="github profile link" handleInputChange={handleInputChange} />
+          <Input id="github" label="github profile" handleInputChange={handleInputChange} />
+          <Input id="linkedin" label="linkedin profile" handleInputChange={handleInputChange} />
           <Input id="address" label="address" handleInputChange={handleInputChange} />
           <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
         </form>

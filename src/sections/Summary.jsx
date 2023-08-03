@@ -2,23 +2,31 @@ import React from 'react';
 
 export const Summary = ({ data }) => {
   const { summary } = data;
-  const { isVisible = true, content = '' } = summary || {};
+  const { isVisible, content } = summary || {};
+
+  const isEmptyObject = (obj) => {
+    return Object.keys(obj).length === 0;
+  };
+
   return (
-    <div className="summary-wrapper">
-      {!summary && (
-        <div className="summary-empty">
+    <>
+      {isEmptyObject(summary) && (
+        <div className="section-placeholder">
           <p>SUMMARY</p>
         </div>
       )}
-      {summary && isVisible && (
-        <div className="summary">
-          <div className="heading">
-            <p className="header">SUMMARY</p>
-            <div className="horizontal-line"></div>
+
+      {!isEmptyObject(summary) && isVisible && (
+        <div className="summary section-wrapper">
+          <div className="section-heading">
+            <p>SUMMARY</p>
+            <div className="section-hr"></div>
           </div>
-          <p className="summary-content">{content}</p>
+          <div className="section-content">
+            <p className="summary-content">{content}</p>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
