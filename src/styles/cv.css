@@ -55,7 +55,7 @@
 .section-content-item {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 /* PERSONAL */
@@ -91,7 +91,6 @@
 /* EXPERIENCE */
 .experience-title {
   font-family: 'Open Sans Bold';
-  /* font-size: 1rem; */
 }
 
 .experience-details {
@@ -120,8 +119,30 @@
   padding-left: 25px;
 }
 
-/* EDUCATION */
+/* PROJECT */
+.project-title {
+  font-family: 'Open Sans Bold';
+}
 
+.project-description {
+  font-size: 0.75rem;
+}
+
+.project-features {
+  font-size: 0.75rem;
+  padding-left: 25px;
+}
+
+.project-repo-url {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  gap: 4px;
+  padding-top: 12px;
+}
+
+/* EDUCATION */
 .education.section-content-item {
   font-size: 0.675rem;
 }
