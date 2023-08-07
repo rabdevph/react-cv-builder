@@ -9,19 +9,15 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-export const ExperienceForm = ({ data, updateData }) => {
-  const { experience } = data;
+export const ProjectForm = ({ data, updateData }) => {
+  const { project } = data;
   const defaultFormValues = {
     id: uuidv4(),
     isVisible: true,
     details: {
-      title: '',
-      company: '',
+      project: '',
       description: '',
-      location: '',
-      'start-year': '',
-      'end-year': '',
-      tasks: [],
+      features: [],
     },
   };
   const [collapsed, setCollapsed] = useState(false);
@@ -43,7 +39,7 @@ export const ExperienceForm = ({ data, updateData }) => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    if (id === 'tasks') {
+    if (id === 'features') {
       const tasksArray = value.split('\n').filter((entry) => entry.trim() !== '');
       setFormValues((prevState) => {
         return {
@@ -69,30 +65,28 @@ export const ExperienceForm = ({ data, updateData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    isNotEmptyArray(experience)
-      ? updateData('experience', [...experience, formValues])
-      : updateData('experience', [formValues]);
+    isNotEmptyArray(project) ? updateData('project', [...project, formValues]) : updateData('project', [formValues]);
     setFormValues(defaultFormValues);
     e.target.reset();
     setIsFormVisible((prevState) => !prevState);
   };
 
-  const toggleExpVisibility = (id) => {
-    if (isNotEmptyArray(experience)) {
-      const updatedExperience = experience.map((expData) => {
+  const toggleProjectVisibility = (id) => {
+    if (isNotEmptyArray(project)) {
+      const updatedExperience = project.map((expData) => {
         if (expData.id === id) {
           return { ...expData, isVisible: !expData.isVisible };
         }
         return expData;
       });
-      updateData('experience', updatedExperience);
+      updateData('project', updatedExperience);
     }
   };
 
-  const deleteExperience = (id) => {
-    if (isNotEmptyArray(experience)) {
-      const updatedExperience = experience.filter((expData) => expData.id !== id);
-      updateData('experience', updatedExperience);
+  const deleteProject = (id) => {
+    if (isNotEmptyArray(project)) {
+      const updatedExperience = project.filter((projectData) => projectData.id !== id);
+      updateData('project', updatedExperience);
     }
   };
 
@@ -100,7 +94,7 @@ export const ExperienceForm = ({ data, updateData }) => {
     <div>
       <div className="form-wrapper">
         <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
-          EXPERIENCE
+          PROJECT
         </button>
         <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
           {!isFormVisible && (
@@ -112,16 +106,12 @@ export const ExperienceForm = ({ data, updateData }) => {
           )}
 
           {isFormVisible && (
-            <form className="experience | form" onSubmit={handleFormSubmit}>
-              <Input id="title" label="position" handleInputChange={handleInputChange} />
-              <Input id="company" label="company" handleInputChange={handleInputChange} />
-              <Input id="description" label="description" handleInputChange={handleInputChange} />
-              <Input id="location" label="location" handleInputChange={handleInputChange} />
-              <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
-              <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
+            <form className="project | form" onSubmit={handleFormSubmit}>
+              <Input id="project" label="project" handleInputChange={handleInputChange} />
+              <TextArea id="description" label="description" handleInputChange={handleInputChange} />
               <TextArea
-                id="tasks"
-                label="Tasks/Accomplishments&#10;* press Enter key between entries"
+                id="features"
+                label="Features&#10;* press Enter key between entries"
                 handleInputChange={handleInputChange}
               />
 
@@ -138,16 +128,16 @@ export const ExperienceForm = ({ data, updateData }) => {
             </form>
           )}
 
-          {isNotEmptyArray(experience) && (
+          {isNotEmptyArray(project) && (
             <div className="experience-list">
-              {experience.map((expData) => {
-                const { id, isVisible, details } = expData;
-                const { title } = details;
+              {project.map((projectData) => {
+                const { id, isVisible, details } = projectData;
+                const { project } = details;
                 return (
                   <div className="experience-list-item" key={id}>
-                    <p className="position">{title}</p>
+                    <p className="position">{project}</p>
                     <div className="data-controls-wrapper">
-                      <button type="button" className="visibility-button" onClick={() => toggleExpVisibility(id)}>
+                      <button type="button" className="visibility-button" onClick={() => toggleProjectVisibility(id)}>
                         {isVisible && (
                           <VisibilityOffIcon
                             sx={{
@@ -170,7 +160,7 @@ export const ExperienceForm = ({ data, updateData }) => {
                           />
                         )}
                       </button>
-                      <button type="button" className="delete-button" onClick={() => deleteExperience(id)}>
+                      <button type="button" className="delete-button" onClick={() => deleteProject(id)}>
                         <DeleteOutlineIcon
                           sx={{
                             fontSize: 14,

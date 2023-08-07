@@ -120,7 +120,7 @@ export const EducationForm = ({ data, updateData }) => {
               return (
                 <div className="education-list-item" key={id}>
                   <p className="degree">{degree}</p>
-                  <div className="controls-wrapper">
+                  <div className="data-controls-wrapper">
                     <button type="button" className="visibility-button" onClick={() => toggleEducationVisibility(id)}>
                       {isVisible && (
                         <VisibilityOffIcon

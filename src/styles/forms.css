@@ -84,6 +84,12 @@
   background-color: #3b82f6;
 }
 
+.data-controls-wrapper {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
 .visibility-button {
   background-color: transparent;
   cursor: pointer;
@@ -150,12 +156,6 @@
   font-size: 0.75rem;
 }
 
-.experience-list-item > .controls-wrapper {
-  display: flex;
-  gap: 4px;
-  margin-left: auto;
-}
-
 /* EDUCATION */
 .education > .controls-wrapper {
   display: flex;
@@ -178,8 +178,12 @@
   font-size: 0.75rem;
 }
 
-.education-list-item > .controls-wrapper {
+/* PROJECT */
+.project > #description {
+  min-height: 100px;
+}
+
+.project > .controls-wrapper {
   display: flex;
-  gap: 4px;
-  margin-left: auto;
+  justify-content: space-between;
 }

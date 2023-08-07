@@ -6,6 +6,7 @@ import { PersonalDetailsForm } from './sections/PersonalDetailsForm.jsx';
 import { SummaryForm } from './sections/SummaryForm.jsx';
 import { EducationForm } from './sections/EducationForm.jsx';
 import { ExperienceForm } from './sections/ExperienceForm.jsx';
+import { ProjectForm } from './sections/ProjectForm.jsx';
 import { PersonalDetails } from './sections/PersonalDetails.jsx';
 import { Summary } from './sections/Summary.jsx';
 import { Education } from './sections/Education.jsx';
@@ -98,28 +99,36 @@ function App() {
     ],
     project: [
       {
-        project: 'E-commerce Website',
-        description:
-          'A fully functional e-commerce website that allows users to browse products, add items to their cart, and complete the checkout process.',
-        features: [
-          'User authentication and registration.',
-          'Product catalog with search and filtering options.',
-          'Shopping cart and order management.',
-          'Secure payment processing using Stripe API.',
-          'Admin dashboard to manage products and orders.',
-        ],
+        id: uuidv4(),
+        isVisible: true,
+        details: {
+          project: 'E-commerce Website',
+          description:
+            'A fully functional e-commerce website that allows users to browse products, add items to their cart, and complete the checkout process.',
+          features: [
+            'User authentication and registration.',
+            'Product catalog with search and filtering options.',
+            'Shopping cart and order management.',
+            'Secure payment processing using Stripe API.',
+            'Admin dashboard to manage products and orders.',
+          ],
+        },
       },
       {
-        project: 'Task Manager App',
-        description:
-          'A task management application that helps users organize and track their daily tasks and activities.',
-        features: [
-          'User login and registration.',
-          'Create, edit, and delete tasks with due dates and priorities.',
-          'Organize tasks into different categories or projects.',
-          'Set reminders and notifications for upcoming deadlines.',
-          'Collaborate with team members by sharing tasks and updates.',
-        ],
+        id: uuidv4(),
+        isVisible: true,
+        details: {
+          project: 'Task Manager App',
+          description:
+            'A task management application that helps users organize and track their daily tasks and activities.',
+          features: [
+            'User login and registration.',
+            'Create, edit, and delete tasks with due dates and priorities.',
+            'Organize tasks into different categories or projects.',
+            'Set reminders and notifications for upcoming deadlines.',
+            'Collaborate with team members by sharing tasks and updates.',
+          ],
+        },
       },
     ],
   });
@@ -142,6 +151,7 @@ function App() {
         <SummaryForm data={data} updateData={updateData} />
         <ExperienceForm data={data} updateData={updateData} />
         <EducationForm data={data} updateData={updateData} />
+        <ProjectForm data={data} updateData={updateData} />
       </div>
       <div className="cv-wrapper">
         <div className="cv">
