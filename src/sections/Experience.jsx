@@ -1,6 +1,6 @@
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 
-export const WorkExperience = ({ data }) => {
+export const Experience = ({ data }) => {
   const { experience } = data;
 
   const isNotEmptyArray = (obj) => {
@@ -11,14 +11,14 @@ export const WorkExperience = ({ data }) => {
     <>
       {!isNotEmptyArray(experience) && (
         <div className="section-placeholder">
-          <p>WORK EXPERIENCE</p>
+          <p>EXPERIENCE</p>
         </div>
       )}
 
       {isNotEmptyArray(experience) && (
-        <div className="work-experience section-wrapper">
+        <div className="experience section-wrapper">
           <div className="section-heading">
-            <p>WORK EXPERIENCE</p>
+            <p>EXPERIENCE</p>
             <div className="section-hr"></div>
           </div>
           <div className="section-content">
@@ -36,19 +36,19 @@ export const WorkExperience = ({ data }) => {
               return (
                 isVisible && (
                   <div className="section-content-item" key={id}>
-                    <p className="work-experience-title">{title}</p>
-                    <div className="work-experience-details">
-                      <p className="work-experience-company">{company}</p>
-                      <div className="work-experience-year">
+                    <p className="experience-title">{title}</p>
+                    <div className="experience-details">
+                      <p className="experience-company">{company}</p>
+                      <div className="experience-year">
                         <CalendarTodayOutlinedIcon sx={{ fontSize: 11, color: '#1f2937' }} />
                         <p>
                           {startYear} - {endYear}
                         </p>
                       </div>
-                      <p className="work-experience-location">{location}</p>
+                      <p className="experience-location">{location}</p>
                     </div>
-                    <p className="work-experience-description">{description}</p>
-                    <ul className="work-experience-tasks">
+                    <p className="experience-description">{description}</p>
+                    <ul className="experience-tasks">
                       {tasks.map((task, index) => {
                         return <li key={index}>{task}</li>;
                       })}

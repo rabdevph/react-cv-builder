@@ -3,36 +3,7 @@
   background-color: #ffffff;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-collapse-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 300px;
-  max-width: 480px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  visibility: hidden;
-}
-
-.form-collapse-wrapper.collapsed {
-  max-height: 1000px;
-  padding: 12px;
-  visibility: visible;
-}
-
-.form.collapsed {
-  max-height: 500px;
-  padding: 12px;
-}
-
-.form-collapse-btn {
+.collapse-btn {
   background-color: #3b82f6;
   border: none;
   color: #ffffff;
@@ -44,31 +15,96 @@
   width: 100%;
 }
 
-.form-collapse-btn::after {
+.collapse-btn::after {
   content: '\002B';
   color: #ffffff;
   float: right;
   font-weight: bold;
 }
 
-.form-collapse-btn:hover {
+.collapse-btn:hover {
   background-color: #2563eb;
 }
 
-.form-collapse-btn.collapsed::after {
+.collapse-btn.collapsed::after {
   content: '\2212';
 }
 
-.form-label {
-  display: block;
-  font-family: 'Open Sans Semi-Bold';
-  font-size: 0.675rem;
-  padding-bottom: 4px;
+.collapse-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 300px;
+  max-width: 480px;
+  max-height: 0;
+  overflow: hidden;
 }
 
+.collapse-wrapper.collapsed {
+  max-height: 1000px;
+  padding: 12px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #bfdbfe;
+  gap: 8px;
+  padding: 12px;
+}
+
+.new-button-wrapper {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #bfdbfe;
+  padding: 24px;
+}
+
+.control-button {
+  background-color: #3b82f6;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.675rem;
+  font-weight: bold;
+  outline: none;
+  width: max-content;
+  padding: 8px;
+}
+
+.update-button {
+  margin-left: auto;
+}
+
+.update-button:hover {
+  background-color: #2563eb;
+}
+
+.update-button:active {
+  background-color: #3b82f6;
+}
+
+.visibility-button {
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
+.delete-button {
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+}
+
+/* COMPONENT - INPUT & TEXTAREA */
 .form-input {
   background-color: #f3f4f6;
-  border: 2px solid #ffffff;
+  border: 2px solid #f3f4f6;
   font-family: inherit;
   font-size: 0.75rem;
   width: 100%;
@@ -86,49 +122,44 @@
   border: 2px solid #60a5fa;
 }
 
-.controls {
+/* SUMMARY */
+.summary > .controls-wrapper {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+}
+
+/* EXPERIENCE */
+.experience > .controls-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+}
+
+.experience-list-item {
+  display: flex;
   width: 100%;
 }
 
-.visibility-button {
-  background-color: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  border: none;
+.experience-list-item > .position {
+  font-size: 0.75rem;
 }
 
-.update-button,
-.add-button {
-  background-color: #3b82f6;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 0.675rem;
-  font-weight: bold;
+.experience-list-item > .controls-wrapper {
+  display: flex;
+  gap: 4px;
   margin-left: auto;
-  outline: none;
-  width: max-content;
-  padding: 8px;
 }
 
-.update-button:hover {
-  background-color: #2563eb;
-}
-
-.update-button:active {
-  background-color: #3b82f6;
-}
-
-.delete-button {
-  background-color: transparent;
-  cursor: pointer;
+/* EDUCATION */
+.education > .controls-wrapper {
   display: flex;
-  align-items: center;
-  border: none;
-  outline: none;
+  justify-content: space-between;
 }
 
 .education-list {
@@ -138,38 +169,16 @@
   padding-top: 12px;
 }
 
-.education-list-degree {
+.education-list-item {
   display: flex;
   width: 100%;
 }
 
-.education-list-degree .degree {
+.education-list-item > .degree {
   font-size: 0.75rem;
 }
 
-.education-list-controls {
-  display: flex;
-  gap: 4px;
-  margin-left: auto;
-}
-
-.work-experience-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 12px;
-}
-
-.work-experience-list-position {
-  display: flex;
-  width: 100%;
-}
-
-.work-experience-list-position .position {
-  font-size: 0.75rem;
-}
-
-.work-experience-list-controls {
+.education-list-item > .controls-wrapper {
   display: flex;
   gap: 4px;
   margin-left: auto;

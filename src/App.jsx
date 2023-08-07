@@ -5,11 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { PersonalDetailsForm } from './sections/PersonalDetailsForm.jsx';
 import { SummaryForm } from './sections/SummaryForm.jsx';
 import { EducationForm } from './sections/EducationForm.jsx';
-import { WorkExperienceForm } from './sections/WorkExperienceForm.jsx';
+import { ExperienceForm } from './sections/ExperienceForm.jsx';
 import { PersonalDetails } from './sections/PersonalDetails.jsx';
 import { Summary } from './sections/Summary.jsx';
 import { Education } from './sections/Education.jsx';
-import { WorkExperience } from './sections/WorkExperience.jsx';
+import { Experience } from './sections/Experience.jsx';
 
 import './App.css';
 
@@ -60,30 +60,68 @@ function App() {
         details: {
           title: 'Web Developer',
           company: 'Browser Tex AE',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          description: 'A leading tech company specializing in web development and innovative online solutions.',
           location: 'Dubai, United Arab Emirates',
           'start-year': '2023',
           'end-year': 'Present',
-          tasks: ['Created a custom client...', 'Conducted routine updates...', 'Designed front-end code..'],
+          tasks: [
+            'Created a custom client-side application using React.js and Redux.',
+            'Conducted routine updates and maintenance on existing web applications.',
+            'Designed and implemented front-end code for new features.',
+            'Collaborated with the design team to create user-friendly interfaces.',
+            'Optimized web applications for better performance and loading speed.',
+            'Troubleshot and debugged issues related to front-end functionalities.',
+          ],
         },
       },
       {
         id: uuidv4(),
         isVisible: true,
         details: {
-          title: 'Software Developer',
-          company: 'Digital One',
+          title: 'Software Engineer',
+          company: 'TechGlobe Solutions',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          location: 'Dubai, United Arab Emirates',
-          'start-year': '2020',
-          'end-year': '2022',
-          tasks: ['Created a custom client...', 'Conducted routine updates...', 'Designed front-end code..'],
+            'A cutting-edge technology company focused on delivering innovative software solutions to clients worldwide. As a Software Engineer, I was responsible for developing and maintaining various web applications and backend systems.',
+          location: 'New York, USA',
+          'start-year': '2022',
+          'end-year': '2023',
+          tasks: [
+            'Collaborated with cross-functional teams to gather requirements and define project scope.',
+            'Designed and implemented RESTful APIs to enable seamless communication between frontend and backend systems.',
+            'Developed responsive and user-friendly web interfaces using HTML, CSS, and JavaScript.',
+            'Integrated third-party APIs to add new functionalities and features to existing applications.',
+            'Performed code reviews and provided constructive feedback to team members.',
+            'Conducted unit testing and bug fixing to ensure high-quality code delivery.',
+          ],
         },
       },
     ],
-    project: [],
+    project: [
+      {
+        project: 'E-commerce Website',
+        description:
+          'A fully functional e-commerce website that allows users to browse products, add items to their cart, and complete the checkout process.',
+        features: [
+          'User authentication and registration.',
+          'Product catalog with search and filtering options.',
+          'Shopping cart and order management.',
+          'Secure payment processing using Stripe API.',
+          'Admin dashboard to manage products and orders.',
+        ],
+      },
+      {
+        project: 'Task Manager App',
+        description:
+          'A task management application that helps users organize and track their daily tasks and activities.',
+        features: [
+          'User login and registration.',
+          'Create, edit, and delete tasks with due dates and priorities.',
+          'Organize tasks into different categories or projects.',
+          'Set reminders and notifications for upcoming deadlines.',
+          'Collaborate with team members by sharing tasks and updates.',
+        ],
+      },
+    ],
   });
 
   const updateData = (property, data) => {
@@ -102,7 +140,7 @@ function App() {
       <div className="cv-forms">
         <PersonalDetailsForm updateData={updateData} />
         <SummaryForm data={data} updateData={updateData} />
-        <WorkExperienceForm data={data} updateData={updateData} />
+        <ExperienceForm data={data} updateData={updateData} />
         <EducationForm data={data} updateData={updateData} />
       </div>
       <div className="cv-wrapper">
@@ -111,7 +149,7 @@ function App() {
           <div className="general-info-wrapper">
             <div className="left-panel">
               <Summary data={data} />
-              <WorkExperience data={data} />
+              <Experience data={data} />
             </div>
             <div className="right-panel">
               <Education data={data} />

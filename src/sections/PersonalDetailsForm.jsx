@@ -40,11 +40,11 @@ export const PersonalDetailsForm = ({ updateData }) => {
 
   return (
     <div className="form-wrapper">
-      <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
+      <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         PERSONAL DETAILS
       </button>
-      <div className={`form-collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        <form className="form" onSubmit={handleFormSubmit}>
+      <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
+        <form className="personal | form" onSubmit={handleFormSubmit}>
           <Input id="name" label="name" handleInputChange={handleInputChange} />
           <Input id="profession" label="profession" handleInputChange={handleInputChange} />
           <Input id="phone" label="phone number" handleInputChange={handleInputChange} />
@@ -52,7 +52,7 @@ export const PersonalDetailsForm = ({ updateData }) => {
           <Input id="github" label="github profile" handleInputChange={handleInputChange} />
           <Input id="linkedin" label="linkedin profile" handleInputChange={handleInputChange} />
           <Input id="address" label="address" handleInputChange={handleInputChange} />
-          <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
+          <input type="submit" className="update-button | control-button" id="update-btn" value="UPDATE" />
         </form>
       </div>
     </div>

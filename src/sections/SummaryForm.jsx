@@ -47,13 +47,14 @@ export const SummaryForm = ({ data, updateData }) => {
 
   return (
     <div className="form-wrapper">
-      <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
+      <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         SUMMARY
       </button>
-      <div className={`form-collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        <form className="form" onSubmit={handleFormSubmit}>
-          <TextArea id="content" label="Summary" handleInputChange={handleInputChange} />
-          <div className="controls">
+      <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
+        <form className="summary | form" onSubmit={handleFormSubmit}>
+          <TextArea id="content" label="summary" handleInputChange={handleInputChange} />
+
+          <div className="controls-wrapper">
             {!isEmptyObject(summary) && (
               <button type="button" className="visibility-button" onClick={toggleSummaryVisibility}>
                 {isVisible && (
@@ -80,7 +81,7 @@ export const SummaryForm = ({ data, updateData }) => {
               </button>
             )}
 
-            <input type="submit" className="update-button" id="update-btn" value="UPDATE" />
+            <input type="submit" className="update-button | control-button" id="update-btn" value="UPDATE" />
           </div>
         </form>
       </div>

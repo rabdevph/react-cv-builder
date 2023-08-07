@@ -22,6 +22,7 @@ export const EducationForm = ({ data, updateData }) => {
     },
   };
   const [collapsed, setCollapsed] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
 
   const isNotEmptyArray = (obj) => {
@@ -30,6 +31,11 @@ export const EducationForm = ({ data, updateData }) => {
 
   const toggleCollapse = () => {
     setCollapsed((prevState) => !prevState);
+    setIsFormVisible(false);
+  };
+
+  const toggleFormVisiblity = () => {
+    setIsFormVisible((prevState) => !prevState);
   };
 
   const handleInputChange = (e) => {
@@ -50,9 +56,10 @@ export const EducationForm = ({ data, updateData }) => {
     education ? updateData('education', [...education, formValues]) : updateData('education', [formValues]);
     setFormValues(defaultFormValues);
     e.target.reset();
+    setIsFormVisible((prevState) => !prevState);
   };
 
-  const toggleVisibility = (id) => {
+  const toggleEducationVisibility = (id) => {
     if (isNotEmptyArray(education)) {
       const updatedEducation = education.map((eduData) => {
         if (eduData.id === id) {
@@ -73,28 +80,48 @@ export const EducationForm = ({ data, updateData }) => {
 
   return (
     <div className="form-wrapper">
-      <button className={`form-collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
+      <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         EDUCATION
       </button>
-      <div className={`form-collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        <form className="form" onSubmit={handleFormSubmit}>
-          <Input id="degree" label="degree" handleInputChange={handleInputChange} />
-          <Input id="school" label="school" handleInputChange={handleInputChange} />
-          <Input id="country" label="Country" handleInputChange={handleInputChange} />
-          <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
-          <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
-          <input type="submit" className="add-button" id="add-btn" value="ADD" />
-        </form>
+      <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
+        {!isFormVisible && (
+          <div className="new-button-wrapper">
+            <button className="new-button | control-button" id="new-button" onClick={toggleFormVisiblity}>
+              NEW
+            </button>
+          </div>
+        )}
+
+        {isFormVisible && (
+          <form className="education | form" onSubmit={handleFormSubmit}>
+            <Input id="degree" label="degree" handleInputChange={handleInputChange} />
+            <Input id="school" label="school" handleInputChange={handleInputChange} />
+            <Input id="country" label="Country" handleInputChange={handleInputChange} />
+            <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
+            <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
+
+            <div className="controls-wrapper">
+              <input
+                type="button"
+                className="close-button | control-button"
+                id="close-button"
+                value="CLOSE"
+                onClick={toggleFormVisiblity}
+              />
+              <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+            </div>
+          </form>
+        )}
         {isNotEmptyArray(education) && (
           <div className="education-list">
             {education.map((eduData) => {
               const { id, isVisible, details } = eduData;
               const { degree } = details;
               return (
-                <div className="education-list-degree" key={id}>
+                <div className="education-list-item" key={id}>
                   <p className="degree">{degree}</p>
-                  <div className="education-list-controls">
-                    <button type="button" className="visibility-button" onClick={() => toggleVisibility(id)}>
+                  <div className="controls-wrapper">
+                    <button type="button" className="visibility-button" onClick={() => toggleEducationVisibility(id)}>
                       {isVisible && (
                         <VisibilityOffIcon
                           sx={{

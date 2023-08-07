@@ -89,33 +89,33 @@
 }
 
 /* EXPERIENCE */
-.work-experience-title {
+.experience-title {
   font-family: 'Open Sans Bold';
+  /* font-size: 1rem; */
 }
 
-.work-experience-details {
+.experience-details {
   display: flex;
   align-items: center;
   font-size: 0.75rem;
   gap: 1.25rem;
 }
 
-.work-experience-company {
+.experience-company {
   flex: 1;
-  font-size: 0.875rem;
 }
 
-.work-experience-year {
+.experience-year {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.work-experience-description {
+.experience-description {
   font-size: 0.75rem;
 }
 
-.work-experience-tasks {
+.experience-tasks {
   font-size: 0.75rem;
   padding-left: 25px;
 }
