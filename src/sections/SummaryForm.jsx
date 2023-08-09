@@ -5,8 +5,6 @@ import { TextArea } from '../components/TextArea.jsx';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import '../styles/forms.css';
-
 export const SummaryForm = ({ data, updateData }) => {
   const { summary } = data;
   const { isVisible } = summary || {};

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { TextArea } from '../components/TextArea.jsx';
-import { SkillsList } from '../components/SkillsList.jsx';
+import { FormSkillsList } from '../components/FormSkillsList.jsx';
 
 export const SkillForm = ({ data, updateData }) => {
   const { skills } = data;
@@ -80,7 +80,11 @@ export const SkillForm = ({ data, updateData }) => {
         <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
           {!isFormVisible && (
             <div className="new-button-wrapper">
-              <button className="new-button | control-button" id="new-button" onClick={toggleFormVisiblity}>
+              <button
+                className="new-button | control-button"
+                id="new-button"
+                onClick={toggleFormVisiblity}
+              >
                 NEW
               </button>
             </div>
@@ -112,7 +116,12 @@ export const SkillForm = ({ data, updateData }) => {
                   value="CLOSE"
                   onClick={toggleFormVisiblity}
                 />
-                <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+                <input
+                  type="submit"
+                  className="add-button | control-button"
+                  id="add-btn"
+                  value="ADD"
+                />
               </div>
             </form>
           )}
@@ -120,14 +129,24 @@ export const SkillForm = ({ data, updateData }) => {
           {isNotEmptyObject(skills) && (
             <div className="skills-list">
               {isNotEmptyArray(languages) && (
-                <SkillsList skillArray={languages} deleteSkill={deleteSkill} category="languages" />
+                <FormSkillsList
+                  skillArray={languages}
+                  deleteSkill={deleteSkill}
+                  category="languages"
+                />
               )}
 
               {isNotEmptyArray(technologies) && (
-                <SkillsList skillArray={technologies} deleteSkill={deleteSkill} category="technologies" />
+                <FormSkillsList
+                  skillArray={technologies}
+                  deleteSkill={deleteSkill}
+                  category="technologies"
+                />
               )}
 
-              {isNotEmptyArray(tools) && <SkillsList skillArray={tools} deleteSkill={deleteSkill} category="tools" />}
+              {isNotEmptyArray(tools) && (
+                <FormSkillsList skillArray={tools} deleteSkill={deleteSkill} category="tools" />
+              )}
             </div>
           )}
         </div>

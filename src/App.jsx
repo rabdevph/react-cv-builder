@@ -13,8 +13,11 @@ import { Summary } from './sections/Summary.jsx';
 import { Experience } from './sections/Experience.jsx';
 import { Project } from './sections/Project.jsx';
 import { Education } from './sections/Education.jsx';
+import { Skill } from './sections/Skill.jsx';
 
-import './App.css';
+import './styles/app.css';
+import './styles/cv.css';
+import './styles/forms.css';
 
 function App() {
   const [data, setData] = useState({
@@ -39,7 +42,8 @@ function App() {
         details: {
           title: 'Web Developer',
           company: 'Browser Tex AE',
-          description: 'A leading tech company specializing in web development and innovative online solutions.',
+          description:
+            'A leading tech company specializing in web development and innovative online solutions.',
           location: 'Dubai, United Arab Emirates',
           'start-year': '2023',
           'end-year': 'Present',
@@ -174,6 +178,7 @@ function App() {
             </div>
             <div className="right-panel">
               <Education data={data} />
+              <Skill data={data} />
             </div>
           </div>
         </div>

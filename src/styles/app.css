@@ -1,0 +1,61 @@
+/* REGULAR */
+@font-face {
+  font-family: 'Open Sans Regular';
+  src: url('../assets/fonts/OpenSans/OpenSans-Regular.ttf');
+}
+
+/* SEMI-BOLD */
+@font-face {
+  font-family: 'Open Sans Semi-Bold';
+  src: url('../assets/fonts/OpenSans/OpenSans-SemiBold.ttf');
+}
+
+/* BOLD */
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('../assets/fonts/OpenSans/OpenSans-Bold.ttf');
+}
+
+:root {
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Open Sans Regular', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #e5e7eb;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 100%;
+  padding: 12px;
+}
+
+.cv-forms {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.cv-wrapper {
+  background-color: #ffffff;
+  min-height: 297mm;
+  padding: 48px;
+}
+
+.cv {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}

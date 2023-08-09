@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import { Input } from '../components/Input.jsx';
 
-import '../styles/forms.css';
-
 export const PersonalDetailsForm = ({ updateData }) => {
   const defaultFormValues = {
     name: '',

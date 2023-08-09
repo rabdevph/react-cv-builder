@@ -12,6 +12,9 @@
 }
 
 .right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
   width: 220px;
 }
 
@@ -157,4 +160,18 @@
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* SKILLS */
+.skills .section-content {
+  /* gap: 8px; */
+}
+
+.skills .list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: 'Open Sans Bold';
+  font-size: 0.75rem;
+  list-style-type: none;
 }
