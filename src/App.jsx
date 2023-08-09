@@ -7,6 +7,7 @@ import { SummaryForm } from './sections/SummaryForm.jsx';
 import { ExperienceForm } from './sections/ExperienceForm.jsx';
 import { ProjectForm } from './sections/ProjectForm.jsx';
 import { EducationForm } from './sections/EducationForm.jsx';
+import { SkillForm } from './sections/SkillForm.jsx';
 import { PersonalDetails } from './sections/PersonalDetails.jsx';
 import { Summary } from './sections/Summary.jsx';
 import { Experience } from './sections/Experience.jsx';
@@ -31,30 +32,6 @@ function App() {
       content:
         'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
     },
-    education: [
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          degree: 'Bachelor of Computer Science',
-          school: 'AMA Computer College',
-          country: 'Philippines',
-          'start-year': '2013',
-          'end-year': '2015',
-        },
-      },
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          degree: 'Masters in Computer Science',
-          school: 'AMA Computer College',
-          country: 'Philippines',
-          'start-year': '2024',
-          'end-year': '2026',
-        },
-      },
-    ],
     experience: [
       {
         id: uuidv4(),
@@ -134,6 +111,35 @@ function App() {
         },
       },
     ],
+    education: [
+      {
+        id: uuidv4(),
+        isVisible: true,
+        details: {
+          degree: 'Bachelor of Computer Science',
+          school: 'AMA Computer College',
+          country: 'Philippines',
+          'start-year': '2013',
+          'end-year': '2015',
+        },
+      },
+      {
+        id: uuidv4(),
+        isVisible: true,
+        details: {
+          degree: 'Masters in Computer Science',
+          school: 'AMA Computer College',
+          country: 'Philippines',
+          'start-year': '2024',
+          'end-year': '2026',
+        },
+      },
+    ],
+    skills: {
+      languages: ['html', 'css', 'javascript', 'python'],
+      technologies: ['reactjs', 'tailwindcss'],
+      tools: ['vscode'],
+    },
   });
 
   const updateData = (property, data) => {
@@ -155,6 +161,7 @@ function App() {
         <ExperienceForm data={data} updateData={updateData} />
         <ProjectForm data={data} updateData={updateData} />
         <EducationForm data={data} updateData={updateData} />
+        <SkillForm data={data} updateData={updateData} />
       </div>
       <div className="cv-wrapper">
         <div className="cv">
