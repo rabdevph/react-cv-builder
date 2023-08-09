@@ -128,6 +128,23 @@
   border: 2px solid #60a5fa;
 }
 
+.form-list {
+  border: 1px solid #bfdbfe;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+}
+
+.form-list-item {
+  display: flex;
+  width: 100%;
+}
+
+.form-list-item > .entry {
+  font-size: 0.75rem;
+}
+
 /* SUMMARY */
 .summary > .controls-wrapper {
   display: flex;
@@ -138,22 +155,6 @@
 .experience > .controls-wrapper {
   display: flex;
   justify-content: space-between;
-}
-
-.experience-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 12px;
-}
-
-.experience-list-item {
-  display: flex;
-  width: 100%;
-}
-
-.experience-list-item > .position {
-  font-size: 0.75rem;
 }
 
 /* PROJECT */
@@ -170,22 +171,6 @@
 .education > .controls-wrapper {
   display: flex;
   justify-content: space-between;
-}
-
-.education-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 12px;
-}
-
-.education-list-item {
-  display: flex;
-  width: 100%;
-}
-
-.education-list-item > .degree {
-  font-size: 0.75rem;
 }
 
 /* SKILLS */

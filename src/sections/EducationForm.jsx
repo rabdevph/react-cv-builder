@@ -3,10 +3,7 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Input } from '../components/Input.jsx';
-
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { FormList } from '../components/FormList.jsx';
 
 export const EducationForm = ({ data, updateData }) => {
   const { education } = data;
@@ -112,50 +109,21 @@ export const EducationForm = ({ data, updateData }) => {
             </div>
           </form>
         )}
+
         {isNotEmptyArray(education) && (
-          <div className="education-list">
+          <div className="form-list">
             {education.map((eduData) => {
               const { id, isVisible, details } = eduData;
               const { degree } = details;
               return (
-                <div className="education-list-item" key={id}>
-                  <p className="degree">{degree}</p>
-                  <div className="data-controls-wrapper">
-                    <button type="button" className="visibility-button" onClick={() => toggleEducationVisibility(id)}>
-                      {isVisible && (
-                        <VisibilityOffIcon
-                          sx={{
-                            fontSize: 14,
-                            color: '#3b82f6',
-                            '&:hover': { color: '#2563eb' },
-                            '&:active': { color: '#3b82f6' },
-                          }}
-                        />
-                      )}
-
-                      {!isVisible && (
-                        <VisibilityIcon
-                          sx={{
-                            fontSize: 14,
-                            color: '#3b82f6',
-                            '&:hover': { color: '#2563eb' },
-                            '&:active': { color: '#3b82f6' },
-                          }}
-                        />
-                      )}
-                    </button>
-                    <button type="button" className="delete-button" onClick={() => deleteEducation(id)}>
-                      <DeleteOutlineIcon
-                        sx={{
-                          fontSize: 14,
-                          color: '#3b82f6',
-                          '&:hover': { color: '#2563eb' },
-                          '&:active': { color: '#3b82f6' },
-                        }}
-                      />
-                    </button>
-                  </div>
-                </div>
+                <FormList
+                  key={id}
+                  id={id}
+                  entry={degree}
+                  isVisible={isVisible}
+                  toggleVisibility={toggleEducationVisibility}
+                  deleteEntry={deleteEducation}
+                />
               );
             })}
           </div>

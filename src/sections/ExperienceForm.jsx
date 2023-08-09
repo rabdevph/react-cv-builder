@@ -4,10 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Input } from '../components/Input.jsx';
 import { TextArea } from '../components/TextArea.jsx';
-
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { FormList } from '../components/FormList.jsx';
 
 export const ExperienceForm = ({ data, updateData }) => {
   const { experience } = data;
@@ -97,96 +94,64 @@ export const ExperienceForm = ({ data, updateData }) => {
   };
 
   return (
-    <div>
-      <div className="form-wrapper">
-        <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
-          EXPERIENCE
-        </button>
-        <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          {!isFormVisible && (
-            <div className="new-button-wrapper">
-              <button className="new-button | control-button" id="new-button" onClick={toggleFormVisiblity}>
-                NEW
-              </button>
-            </div>
-          )}
+    <div className="form-wrapper">
+      <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
+        EXPERIENCE
+      </button>
+      <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
+        {!isFormVisible && (
+          <div className="new-button-wrapper">
+            <button className="new-button | control-button" id="new-button" onClick={toggleFormVisiblity}>
+              NEW
+            </button>
+          </div>
+        )}
 
-          {isFormVisible && (
-            <form className="experience | form" onSubmit={handleFormSubmit}>
-              <Input id="title" label="position" handleInputChange={handleInputChange} />
-              <Input id="company" label="company" handleInputChange={handleInputChange} />
-              <Input id="description" label="description" handleInputChange={handleInputChange} />
-              <Input id="location" label="location" handleInputChange={handleInputChange} />
-              <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
-              <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
-              <TextArea
-                id="tasks"
-                label="Tasks/Accomplishments&#10;* press Enter key between entries"
-                handleInputChange={handleInputChange}
+        {isFormVisible && (
+          <form className="experience | form" onSubmit={handleFormSubmit}>
+            <Input id="title" label="position" handleInputChange={handleInputChange} />
+            <Input id="company" label="company" handleInputChange={handleInputChange} />
+            <Input id="description" label="description" handleInputChange={handleInputChange} />
+            <Input id="location" label="location" handleInputChange={handleInputChange} />
+            <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
+            <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
+            <TextArea
+              id="tasks"
+              label="Tasks/Accomplishments&#10;* press Enter key between entries"
+              handleInputChange={handleInputChange}
+            />
+
+            <div className="controls-wrapper">
+              <input
+                type="button"
+                className="close-button | control-button"
+                id="close-button"
+                value="CLOSE"
+                onClick={toggleFormVisiblity}
               />
-
-              <div className="controls-wrapper">
-                <input
-                  type="button"
-                  className="close-button | control-button"
-                  id="close-button"
-                  value="CLOSE"
-                  onClick={toggleFormVisiblity}
-                />
-                <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
-              </div>
-            </form>
-          )}
-
-          {isNotEmptyArray(experience) && (
-            <div className="experience-list">
-              {experience.map((expData) => {
-                const { id, isVisible, details } = expData;
-                const { title } = details;
-                return (
-                  <div className="experience-list-item" key={id}>
-                    <p className="position">{title}</p>
-                    <div className="data-controls-wrapper">
-                      <button type="button" className="visibility-button" onClick={() => toggleExpVisibility(id)}>
-                        {isVisible && (
-                          <VisibilityOffIcon
-                            sx={{
-                              fontSize: 14,
-                              color: '#3b82f6',
-                              '&:hover': { color: '#2563eb' },
-                              '&:active': { color: '#3b82f6' },
-                            }}
-                          />
-                        )}
-
-                        {!isVisible && (
-                          <VisibilityIcon
-                            sx={{
-                              fontSize: 14,
-                              color: '#3b82f6',
-                              '&:hover': { color: '#2563eb' },
-                              '&:active': { color: '#3b82f6' },
-                            }}
-                          />
-                        )}
-                      </button>
-                      <button type="button" className="delete-button" onClick={() => deleteExperience(id)}>
-                        <DeleteOutlineIcon
-                          sx={{
-                            fontSize: 14,
-                            color: '#3b82f6',
-                            '&:hover': { color: '#2563eb' },
-                            '&:active': { color: '#3b82f6' },
-                          }}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+              <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
             </div>
-          )}
-        </div>
+          </form>
+        )}
+
+        {isNotEmptyArray(experience) && (
+          <div className="form-list">
+            {experience.map((expData) => {
+              const { id, isVisible, details } = expData;
+              const { title } = details;
+              return (
+                <FormList
+                  key={id}
+                  id={id}
+                  entry={title}
+                  isVisible={isVisible}
+                  toggleVisibility={toggleExpVisibility}
+                  deleteEntry={deleteExperience}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
