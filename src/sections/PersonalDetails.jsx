@@ -3,12 +3,11 @@ import React from 'react';
 import PhoneIcon from '@mui/icons-material/Phone';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PlaceIcon from '@mui/icons-material/Place';
 
 export const PersonalDetails = ({ data }) => {
   const { personal } = data;
-  const { name, profession, phone, email, github, linkedin, address } = personal || {};
+  const { name, profession, phone, email, github, address } = personal || {};
 
   const isEmptyObject = (obj) => {
     return Object.keys(obj).length === 0;
@@ -21,30 +20,35 @@ export const PersonalDetails = ({ data }) => {
           <p>PERSONAL DETAILS</p>
         </div>
       )}
+
       {!isEmptyObject(personal) && (
         <div className="personal section-wrapper">
-          <p className="personal-name">{name.toUpperCase()}</p>
-          <p className="personal-profession">{profession.replace(/(^|\s)\S/g, (match) => match.toUpperCase())}</p>
+          <p className="personal-name">{name ? name.toUpperCase() : 'FULL NAME'}</p>
+          <p className="personal-profession">
+            {profession
+              ? profession.replace(/(^|\s)\S/g, (match) => match.toUpperCase())
+              : 'Profession'}
+          </p>
           <div className="personal-details">
             <div className="personal-details-item">
               <PhoneIcon sx={{ fontSize: 12, color: '#1f2937' }} />
-              <p>{phone}</p>
+              <p>{phone ? phone : 'phone number'}</p>
             </div>
             <div className="personal-details-item">
               <AlternateEmailIcon sx={{ fontSize: 12, color: '#1f2937' }} />
-              <p>{email}</p>
+              <p>{email ? email : 'email address'}</p>
             </div>
             <div className="personal-details-item">
               <GitHubIcon sx={{ fontSize: 12, color: '#1f2937' }} />
-              <p>{github}</p>
-            </div>
-            <div className="personal-details-item">
-              <LinkedInIcon sx={{ fontSize: 12, color: '#1f2937' }} />
-              <p>{linkedin}</p>
+              <p>{github ? github : 'github profile'}</p>
             </div>
             <div className="personal-details-item">
               <PlaceIcon sx={{ fontSize: 12, color: '#1f2937' }} />
-              <p>{address.replace(/(^|\s|\.)\S/g, (match) => match.toUpperCase())}</p>
+              <p>
+                {address
+                  ? address.replace(/(^|\s|\.)\S/g, (match) => match.toUpperCase())
+                  : 'address'}
+              </p>
             </div>
           </div>
         </div>

@@ -21,15 +21,7 @@ import './styles/forms.css';
 
 function App() {
   const [data, setData] = useState({
-    personal: {
-      name: 'ralph arsy bauto',
-      profession: 'web developer',
-      phone: '+971 55 161 5292',
-      email: 'rab.devph@gmail.com',
-      github: 'github.com/profile',
-      linkedin: 'linkedin.com/profile',
-      address: 'dubai, u.a.e',
-    },
+    personal: {},
     summary: {
       isVisible: true,
       content:
@@ -156,7 +148,7 @@ function App() {
   return (
     <div className="app">
       <div className="cv-forms">
-        <PersonalDetailsForm updateData={updateData} />
+        <PersonalDetailsForm data={data} updateData={updateData} />
         <SummaryForm data={data} updateData={updateData} />
         <ExperienceForm data={data} updateData={updateData} />
         <ProjectForm data={data} updateData={updateData} />
@@ -178,7 +170,6 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="cv-2">{/* print overflowed data here */}</div>
       </div>
     </div>
   );

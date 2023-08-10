@@ -73,7 +73,7 @@ export const SkillForm = ({ data, updateData }) => {
 
   return (
     <div>
-      <div className="form-wrapper">
+      <div className="form-section-wrapper">
         <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
           SKILLS
         </button>

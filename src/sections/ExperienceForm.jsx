@@ -93,7 +93,7 @@ export const ExperienceForm = ({ data, updateData }) => {
   };
 
   return (
-    <div className="form-wrapper">
+    <div className="form-section-wrapper">
       <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         EXPERIENCE
       </button>

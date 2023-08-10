@@ -35,7 +35,7 @@ body {
 
 .app {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 12px;
   max-width: 100%;
   padding: 12px;

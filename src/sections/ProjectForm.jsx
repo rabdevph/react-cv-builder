@@ -62,7 +62,9 @@ export const ProjectForm = ({ data, updateData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    isNotEmptyArray(project) ? updateData('project', [...project, formValues]) : updateData('project', [formValues]);
+    isNotEmptyArray(project)
+      ? updateData('project', [...project, formValues])
+      : updateData('project', [formValues]);
     setFormValues(defaultFormValues);
     e.target.reset();
     setIsFormVisible((prevState) => !prevState);
@@ -88,14 +90,18 @@ export const ProjectForm = ({ data, updateData }) => {
   };
 
   return (
-    <div className="form-wrapper">
+    <div className="form-section-wrapper">
       <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         PROJECT
       </button>
       <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
         {!isFormVisible && (
           <div className="new-button-wrapper">
-            <button className="new-button | control-button" id="new-button" onClick={toggleFormVisiblity}>
+            <button
+              className="new-button | control-button"
+              id="new-button"
+              onClick={toggleFormVisiblity}
+            >
               NEW
             </button>
           </div>
@@ -119,7 +125,12 @@ export const ProjectForm = ({ data, updateData }) => {
                 value="CLOSE"
                 onClick={toggleFormVisiblity}
               />
-              <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+              <input
+                type="submit"
+                className="add-button | control-button"
+                id="add-btn"
+                value="ADD"
+              />
             </div>
           </form>
         )}

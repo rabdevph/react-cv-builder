@@ -27,7 +27,7 @@ export const SummaryForm = ({ data, updateData }) => {
     setFormValue((prevState) => {
       return {
         ...prevState,
-        content: e.target.value,
+        [e.target.id]: e.target.value,
       };
     });
   };
@@ -44,7 +44,7 @@ export const SummaryForm = ({ data, updateData }) => {
   };
 
   return (
-    <div className="form-wrapper">
+    <div className="form-section-wrapper">
       <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
         SUMMARY
       </button>
@@ -79,7 +79,12 @@ export const SummaryForm = ({ data, updateData }) => {
               </button>
             )}
 
-            <input type="submit" className="update-button | control-button" id="update-btn" value="UPDATE" />
+            <input
+              type="submit"
+              className="update-button | control-button"
+              id="update-btn"
+              value="UPDATE"
+            />
           </div>
         </form>
       </div>

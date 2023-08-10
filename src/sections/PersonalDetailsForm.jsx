@@ -2,31 +2,21 @@ import React, { useState } from 'react';
 
 import { Input } from '../components/Input.jsx';
 
-export const PersonalDetailsForm = ({ updateData }) => {
+export const PersonalDetailsForm = ({ data, updateData }) => {
+  const { personal } = data;
   const defaultFormValues = {
     name: '',
     profession: '',
     phone: '',
     email: '',
     github: '',
-    linkedin: '',
     address: '',
   };
-  const [collapsed, setCollapsed] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
-
-  const toggleCollapse = () => {
-    setCollapsed((prevState) => !prevState);
-  };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormValues((prevState) => {
-      return {
-        ...prevState,
-        [id]: value,
-      };
-    });
+    updateData('personal', { ...personal, [id]: value });
   };
 
   const handleFormSubmit = (e) => {
@@ -37,20 +27,16 @@ export const PersonalDetailsForm = ({ updateData }) => {
   };
 
   return (
-    <div className="form-wrapper">
-      <button className={`collapse-btn ${collapsed ? 'collapsed' : ''}`} onClick={toggleCollapse}>
-        PERSONAL DETAILS
-      </button>
-      <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        <form className="personal | form" onSubmit={handleFormSubmit}>
+    <div className="personal | form-section-wrapper">
+      <div className="header">PERSONAL DETAILS</div>
+      <div className="form-wrapper">
+        <form className="form" onSubmit={handleFormSubmit}>
           <Input id="name" label="name" handleInputChange={handleInputChange} />
           <Input id="profession" label="profession" handleInputChange={handleInputChange} />
           <Input id="phone" label="phone number" handleInputChange={handleInputChange} />
           <Input id="email" label="email address" handleInputChange={handleInputChange} />
           <Input id="github" label="github profile" handleInputChange={handleInputChange} />
-          <Input id="linkedin" label="linkedin profile" handleInputChange={handleInputChange} />
           <Input id="address" label="address" handleInputChange={handleInputChange} />
-          <input type="submit" className="update-button | control-button" id="update-btn" value="UPDATE" />
         </form>
       </div>
     </div>
