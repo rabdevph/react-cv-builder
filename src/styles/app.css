@@ -50,6 +50,7 @@ body {
 
 .cv-wrapper {
   background-color: #ffffff;
+  width: 210mm;
   min-height: 297mm;
   padding: 48px;
 }
@@ -58,4 +59,22 @@ body {
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
+
+@media print {
+  @page {
+    margin: 1.6cm;
+  }
+
+  body {
+    background-color: #ffffff;
+    visibility: hidden;
+  }
+
+  #print-this-section {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }

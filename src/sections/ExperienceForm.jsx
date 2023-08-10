@@ -14,7 +14,6 @@ export const ExperienceForm = ({ data, updateData }) => {
     details: {
       title: '',
       company: '',
-      description: '',
       location: '',
       'start-year': '',
       'end-year': '',
@@ -101,7 +100,11 @@ export const ExperienceForm = ({ data, updateData }) => {
       <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
         {!isFormVisible && (
           <div className="new-button-wrapper">
-            <button className="new-button | control-button" id="new-button" onClick={toggleFormVisiblity}>
+            <button
+              className="new-button | control-button"
+              id="new-button"
+              onClick={toggleFormVisiblity}
+            >
               NEW
             </button>
           </div>
@@ -129,7 +132,12 @@ export const ExperienceForm = ({ data, updateData }) => {
                 value="CLOSE"
                 onClick={toggleFormVisiblity}
               />
-              <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+              <input
+                type="submit"
+                className="add-button | control-button"
+                id="add-btn"
+                value="ADD"
+              />
             </div>
           </form>
         )}

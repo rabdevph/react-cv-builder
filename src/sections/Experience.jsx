@@ -27,7 +27,6 @@ export const Experience = ({ data }) => {
               const {
                 title,
                 company,
-                description,
                 location,
                 'start-year': startYear,
                 'end-year': endYear,
@@ -47,7 +46,6 @@ export const Experience = ({ data }) => {
                       </div>
                       <p className="experience-location">{location}</p>
                     </div>
-                    <p className="experience-description">{description}</p>
                     <ul className="experience-tasks">
                       {tasks.map((task, index) => {
                         return <li key={index}>{task}</li>;

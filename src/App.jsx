@@ -42,8 +42,6 @@ function App() {
         details: {
           title: 'Web Developer',
           company: 'Browser Tex AE',
-          description:
-            'A leading tech company specializing in web development and innovative online solutions.',
           location: 'Dubai, United Arab Emirates',
           'start-year': '2023',
           'end-year': 'Present',
@@ -63,8 +61,6 @@ function App() {
         details: {
           title: 'Software Engineer',
           company: 'TechGlobe Solutions',
-          description:
-            'A cutting-edge technology company focused on delivering innovative software solutions to clients worldwide. As a Software Engineer, I was responsible for developing and maintaining various web applications and backend systems.',
           location: 'New York, USA',
           'start-year': '2022',
           'end-year': '2023',
@@ -168,7 +164,7 @@ function App() {
         <SkillForm data={data} updateData={updateData} />
       </div>
       <div className="cv-wrapper">
-        <div className="cv">
+        <div className="cv" id="print-this-section">
           <PersonalDetails data={data} />
           <div className="general-info-wrapper">
             <div className="left-panel">
@@ -182,6 +178,7 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="cv-2">{/* print overflowed data here */}</div>
       </div>
     </div>
   );
