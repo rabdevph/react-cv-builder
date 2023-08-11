@@ -13,10 +13,6 @@ export const Summary = ({ data }) => {
 
       {summary && (
         <div className="summary section-wrapper">
-          <div className="section-heading">
-            <p>SUMMARY</p>
-            <div className="section-hr"></div>
-          </div>
           <div className="section-content">
             <p className="summary-content">{summary}</p>
           </div>

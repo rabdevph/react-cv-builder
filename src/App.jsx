@@ -154,9 +154,9 @@ function App() {
       <div className="cv-wrapper">
         <div className="cv" id="print-this-section">
           <PersonalDetails data={data} />
+          <Summary data={data} />
           <div className="general-info-wrapper">
             <div className="left-panel">
-              <Summary data={data} />
               <Experience data={data} />
               <Project data={data} />
             </div>
