@@ -67,7 +67,8 @@
   padding: 24px;
 }
 
-.section-control-button {
+.section-control-button,
+.control-button {
   background-color: #3b82f6;
   border: none;
   color: #ffffff;
@@ -80,15 +81,7 @@
 }
 
 .control-button {
-  background-color: #3b82f6;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 0.675rem;
-  font-weight: bold;
-  outline: none;
   width: max-content;
-  padding: 8px;
 }
 
 .update-button {

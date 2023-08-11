@@ -24,42 +24,7 @@ function App() {
     personal: {},
     summary: '',
     experience: {},
-    project: [
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          project: 'E-commerce Website',
-          'repository-url': 'github.com/rabdevph/e-commerce-website',
-          description:
-            'A fully functional e-commerce website that allows users to browse products, add items to their cart, and complete the checkout process.',
-          features: [
-            'User authentication and registration.',
-            'Product catalog with search and filtering options.',
-            'Shopping cart and order management.',
-            'Secure payment processing using Stripe API.',
-            'Admin dashboard to manage products and orders.',
-          ],
-        },
-      },
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          project: 'Task Manager App',
-          'repository-url': 'github.com/rabdevph/task-manager-app',
-          description:
-            'A task management application that helps users organize and track their daily tasks and activities.',
-          features: [
-            'User login and registration.',
-            'Create, edit, and delete tasks with due dates and priorities.',
-            'Organize tasks into different categories or projects.',
-            'Set reminders and notifications for upcoming deadlines.',
-            'Collaborate with team members by sharing tasks and updates.',
-          ],
-        },
-      },
-    ],
+    project: {},
     education: [
       {
         id: uuidv4(),

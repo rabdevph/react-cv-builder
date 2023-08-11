@@ -2,29 +2,30 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 export const Project = ({ data }) => {
   const { project } = data;
+  const { isSectionVisible, information } = project;
 
-  const isNotEmptyArray = (obj) => {
-    return Array.isArray(obj) && obj.length !== 0;
+  const isNotEmpty = (arr) => {
+    return Array.isArray(arr) && arr.length !== 0;
   };
 
   return (
     <>
-      {!isNotEmptyArray(project) && (
+      {!isNotEmpty(information) ? (
         <div className="section-placeholder">
           <p>PROJECT</p>
         </div>
-      )}
+      ) : null}
 
-      {isNotEmptyArray(project) && (
+      {isNotEmpty(information) && isSectionVisible ? (
         <div className="project section-wrapper">
           <div className="section-heading">
             <p>PROJECT</p>
             <div className="section-hr"></div>
           </div>
           <div className="section-content">
-            {project.map((projectData) => {
-              const { id, isVisible, details } = projectData;
-              const { project, 'repository-url': repositoryUrl, description, features } = details;
+            {information.map((projectInfo) => {
+              const { id, isVisible, details } = projectInfo;
+              const { project, repository, description, features } = details;
               return (
                 isVisible && (
                   <div className="section-content-item" key={id}>
@@ -37,7 +38,7 @@ export const Project = ({ data }) => {
                     </ul>
                     <div className="project-repo-url">
                       <GitHubIcon sx={{ fontSize: 12, color: '#1f2937' }} />
-                      <p>{repositoryUrl}</p>
+                      <p>{repository}</p>
                     </div>
                   </div>
                 )
@@ -45,7 +46,7 @@ export const Project = ({ data }) => {
             })}
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 };

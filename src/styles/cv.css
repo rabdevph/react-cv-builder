@@ -7,14 +7,14 @@
 .left-panel {
   display: flex;
   flex-direction: column;
-  gap: 2.75rem;
+  gap: 24px;
   width: 460px;
 }
 
 .right-panel {
   display: flex;
   flex-direction: column;
-  gap: 2.75rem;
+  gap: 24px;
   width: 220px;
 }
 
@@ -163,10 +163,6 @@
 }
 
 /* SKILLS */
-.skills .section-content {
-  /* gap: 8px; */
-}
-
 .skills .list {
   display: flex;
   flex-wrap: wrap;
