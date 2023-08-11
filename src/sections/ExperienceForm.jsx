@@ -8,6 +8,7 @@ import { FormList } from '../components/FormList.jsx';
 
 export const ExperienceForm = ({ data, updateData }) => {
   const { experience } = data;
+  const { isSectionVisible, information } = experience;
   const defaultFormValues = {
     id: uuidv4(),
     isVisible: true,
@@ -24,8 +25,8 @@ export const ExperienceForm = ({ data, updateData }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
 
-  const isNotEmptyArray = (obj) => {
-    return Array.isArray(obj) && obj.length !== 0;
+  const isNotEmpty = (arr) => {
+    return Array.isArray(arr) && arr.length !== 0;
   };
 
   const toggleCollapse = () => {
@@ -63,32 +64,39 @@ export const ExperienceForm = ({ data, updateData }) => {
     }
   };
 
+  const toggleSectionVisibility = () => {
+    updateData('experience', { ...experience, isSectionVisible: !experience.isSectionVisible });
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    isNotEmptyArray(experience)
-      ? updateData('experience', [...experience, formValues])
-      : updateData('experience', [formValues]);
+    isNotEmpty(information)
+      ? updateData('experience', {
+          ...experience,
+          information: [...experience.information, formValues],
+        })
+      : updateData('experience', { isSectionVisible: true, information: [formValues] });
     setFormValues(defaultFormValues);
     e.target.reset();
     setIsFormVisible((prevState) => !prevState);
   };
 
   const toggleExpVisibility = (id) => {
-    if (isNotEmptyArray(experience)) {
-      const updatedExperience = experience.map((expData) => {
-        if (expData.id === id) {
-          return { ...expData, isVisible: !expData.isVisible };
+    if (isNotEmpty(information)) {
+      const updatedInformation = information.map((expInfo) => {
+        if (expInfo.id === id) {
+          return { ...expInfo, isVisible: !expInfo.isVisible };
         }
-        return expData;
+        return expInfo;
       });
-      updateData('experience', updatedExperience);
+      updateData('experience', { ...experience, information: updatedInformation });
     }
   };
 
   const deleteExperience = (id) => {
-    if (isNotEmptyArray(experience)) {
-      const updatedExperience = experience.filter((expData) => expData.id !== id);
-      updateData('experience', updatedExperience);
+    if (isNotEmpty(information)) {
+      const updatedInformation = information.filter((expInfo) => expInfo.id !== id);
+      updateData('experience', { ...experience, information: updatedInformation });
     }
   };
 
@@ -99,14 +107,25 @@ export const ExperienceForm = ({ data, updateData }) => {
       </button>
       <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
         {!isFormVisible && (
-          <div className="new-button-wrapper">
+          <div className="section-control-wrapper">
             <button
-              className="new-button | control-button"
+              className="new-exprience-button | section-control-button"
               id="new-button"
               onClick={toggleFormVisiblity}
             >
               NEW
             </button>
+            {isNotEmpty(information) && (
+              <button
+                className="toggle-section-button | section-control-button"
+                id="new-button"
+                onClick={toggleSectionVisibility}
+              >
+                {isSectionVisible && 'HIDE '}
+                {!isSectionVisible && 'SHOW '}
+                SECTION
+              </button>
+            )}
           </div>
         )}
 
@@ -142,10 +161,10 @@ export const ExperienceForm = ({ data, updateData }) => {
           </form>
         )}
 
-        {isNotEmptyArray(experience) && (
+        {isNotEmpty(information) && (
           <div className="form-list">
-            {experience.map((expData) => {
-              const { id, isVisible, details } = expData;
+            {information.map((expInfo) => {
+              const { id, isVisible, details } = expInfo;
               const { title } = details;
               return (
                 <FormList

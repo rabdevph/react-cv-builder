@@ -23,46 +23,7 @@ function App() {
   const [data, setData] = useState({
     personal: {},
     summary: '',
-    experience: [
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          title: 'Web Developer',
-          company: 'Browser Tex AE',
-          location: 'Dubai, United Arab Emirates',
-          'start-year': '2023',
-          'end-year': 'Present',
-          tasks: [
-            'Created a custom client-side application using React.js and Redux.',
-            'Conducted routine updates and maintenance on existing web applications.',
-            'Designed and implemented front-end code for new features.',
-            'Collaborated with the design team to create user-friendly interfaces.',
-            'Optimized web applications for better performance and loading speed.',
-            'Troubleshot and debugged issues related to front-end functionalities.',
-          ],
-        },
-      },
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          title: 'Software Engineer',
-          company: 'TechGlobe Solutions',
-          location: 'New York, USA',
-          'start-year': '2022',
-          'end-year': '2023',
-          tasks: [
-            'Collaborated with cross-functional teams to gather requirements and define project scope.',
-            'Designed and implemented RESTful APIs to enable seamless communication between frontend and backend systems.',
-            'Developed responsive and user-friendly web interfaces using HTML, CSS, and JavaScript.',
-            'Integrated third-party APIs to add new functionalities and features to existing applications.',
-            'Performed code reviews and provided constructive feedback to team members.',
-            'Conducted unit testing and bug fixing to ensure high-quality code delivery.',
-          ],
-        },
-      },
-    ],
+    experience: {},
     project: [
       {
         id: uuidv4(),

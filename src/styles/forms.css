@@ -57,11 +57,26 @@
   padding: 12px;
 }
 
-.new-button-wrapper {
+.section-control-wrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   border: 1px solid #bfdbfe;
+  gap: 8px;
   padding: 24px;
+}
+
+.section-control-button {
+  background-color: #3b82f6;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.675rem;
+  font-weight: bold;
+  outline: none;
+  width: 100%;
+  padding: 8px;
 }
 
 .control-button {
