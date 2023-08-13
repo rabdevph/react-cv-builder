@@ -23,37 +23,14 @@ function App() {
   const [data, setData] = useState({
     personal: {},
     summary: '',
-    experience: {},
-    project: {},
-    education: [
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          degree: 'Bachelor of Computer Science',
-          school: 'AMA Computer College',
-          country: 'Philippines',
-          'start-year': '2013',
-          'end-year': '2015',
-        },
-      },
-      {
-        id: uuidv4(),
-        isVisible: true,
-        details: {
-          degree: 'Masters in Computer Science',
-          school: 'AMA Computer College',
-          country: 'Philippines',
-          'start-year': '2024',
-          'end-year': '2026',
-        },
-      },
-    ],
-    skills: {
-      languages: ['html', 'css', 'javascript', 'python'],
-      technologies: ['reactjs', 'tailwindcss'],
-      tools: ['vscode'],
+    experience: {
+      isSectionVisible: true,
     },
+    project: {
+      isSectionVisible: true,
+    },
+    education: [],
+    skills: {},
   });
 
   const updateData = (property, data) => {
@@ -64,8 +41,6 @@ function App() {
       };
     });
   };
-
-  console.log(data);
 
   return (
     <div className="app">

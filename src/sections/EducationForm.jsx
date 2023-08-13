@@ -5,6 +5,45 @@ import { v4 as uuidv4 } from 'uuid';
 import { Input } from '../components/Input.jsx';
 import { FormList } from '../components/FormList.jsx';
 
+const Form = ({ handleFormSubmit, handleInputChange, toggleFormVisiblity }) => {
+  return (
+    <form className="education | form" onSubmit={handleFormSubmit}>
+      <Input id="degree" label="degree" handleInputChange={handleInputChange} />
+      <Input id="school" label="school" handleInputChange={handleInputChange} />
+      <Input id="country" label="Country" handleInputChange={handleInputChange} />
+      <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
+      <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
+
+      <div className="controls-wrapper">
+        <input
+          type="button"
+          className="close-button | control-button"
+          id="close-button"
+          value="CLOSE"
+          onClick={toggleFormVisiblity}
+        />
+        <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+      </div>
+    </form>
+  );
+};
+
+const Controls = ({ toggleFormVisiblity }) => {
+  return (
+    <div className="new-button-wrapper">
+      <div className="section-control-wrapper">
+        <button
+          className="new-education-button | section-control-button"
+          id="new-button"
+          onClick={toggleFormVisiblity}
+        >
+          NEW
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export const EducationForm = ({ data, updateData }) => {
   const { education } = data;
   const defaultFormValues = {
@@ -22,8 +61,8 @@ export const EducationForm = ({ data, updateData }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
 
-  const isNotEmptyArray = (obj) => {
-    return Array.isArray(obj) && obj.length !== 0;
+  const isNotEmpty = (arr) => {
+    return Array.isArray(arr) && arr.length !== 0;
   };
 
   const toggleCollapse = () => {
@@ -50,29 +89,29 @@ export const EducationForm = ({ data, updateData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    education
+    isNotEmpty(education)
       ? updateData('education', [...education, formValues])
       : updateData('education', [formValues]);
-    setFormValues(defaultFormValues);
+
     e.target.reset();
     setIsFormVisible((prevState) => !prevState);
   };
 
-  const toggleEducationVisibility = (id) => {
-    if (isNotEmptyArray(education)) {
-      const updatedEducation = education.map((eduData) => {
-        if (eduData.id === id) {
-          return { ...eduData, isVisible: !eduData.isVisible };
+  const toggleEduVisibility = (id) => {
+    if (isNotEmpty(education)) {
+      const updatedEducation = education.map((eduInfo) => {
+        if (eduInfo.id === id) {
+          return { ...eduInfo, isVisible: !eduInfo.isVisible };
         }
-        return eduData;
+        return eduInfo;
       });
       updateData('education', updatedEducation);
     }
   };
 
   const deleteEducation = (id) => {
-    if (isNotEmptyArray(education)) {
-      const updatedEducation = education.filter((eduData) => eduData.id !== id);
+    if (isNotEmpty(education)) {
+      const updatedEducation = education.filter((eduInfo) => eduInfo.id !== id);
       updateData('education', updatedEducation);
     }
   };
@@ -83,48 +122,20 @@ export const EducationForm = ({ data, updateData }) => {
         EDUCATION
       </button>
       <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        {!isFormVisible && (
-          <div className="new-button-wrapper">
-            <button
-              className="new-button | control-button"
-              id="new-button"
-              onClick={toggleFormVisiblity}
-            >
-              NEW
-            </button>
-          </div>
+        {isFormVisible ? (
+          <Form
+            handleFormSubmit={handleFormSubmit}
+            handleInputChange={handleInputChange}
+            toggleFormVisiblity={toggleFormVisiblity}
+          />
+        ) : (
+          <Controls toggleFormVisiblity={toggleFormVisiblity} />
         )}
 
-        {isFormVisible && (
-          <form className="education | form" onSubmit={handleFormSubmit}>
-            <Input id="degree" label="degree" handleInputChange={handleInputChange} />
-            <Input id="school" label="school" handleInputChange={handleInputChange} />
-            <Input id="country" label="Country" handleInputChange={handleInputChange} />
-            <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
-            <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
-
-            <div className="controls-wrapper">
-              <input
-                type="button"
-                className="close-button | control-button"
-                id="close-button"
-                value="CLOSE"
-                onClick={toggleFormVisiblity}
-              />
-              <input
-                type="submit"
-                className="add-button | control-button"
-                id="add-btn"
-                value="ADD"
-              />
-            </div>
-          </form>
-        )}
-
-        {isNotEmptyArray(education) && (
+        {isNotEmpty(education) ? (
           <div className="form-list">
-            {education.map((eduData) => {
-              const { id, isVisible, details } = eduData;
+            {education.map((eduInfo) => {
+              const { id, isVisible, details } = eduInfo;
               const { degree } = details;
               return (
                 <FormList
@@ -132,13 +143,13 @@ export const EducationForm = ({ data, updateData }) => {
                   id={id}
                   entry={degree}
                   isVisible={isVisible}
-                  toggleVisibility={toggleEducationVisibility}
+                  toggleVisibility={toggleEduVisibility}
                   deleteEntry={deleteEducation}
                 />
               );
             })}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

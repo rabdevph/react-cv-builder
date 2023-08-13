@@ -32,40 +32,32 @@ const Form = ({ handleFormSubmit, handleInputChange, toggleFormVisiblity }) => {
   );
 };
 
-const Controls = ({
-  toggleFormVisiblity,
-  isNotEmpty,
-  information,
-  toggleSectionVisibility,
-  isSectionVisible,
-}) => {
+const Controls = ({ toggleFormVisiblity, toggleSectionVisibility, isSectionVisible }) => {
   return (
     <div className="section-control-wrapper">
       <button
-        className="new-exprience-button | section-control-button"
+        className="new-project-button | section-control-button"
         id="new-button"
         onClick={toggleFormVisiblity}
       >
         NEW
       </button>
 
-      {isNotEmpty(information) ? (
-        <button
-          className="toggle-section-button | section-control-button"
-          id="new-button"
-          onClick={toggleSectionVisibility}
-        >
-          {isSectionVisible ? 'HIDE ' : 'SHOW '}
-          SECTION
-        </button>
-      ) : null}
+      <button
+        className="toggle-section-button | section-control-button"
+        id="new-button"
+        onClick={toggleSectionVisibility}
+      >
+        {isSectionVisible ? 'HIDE ' : 'SHOW '}
+        SECTION
+      </button>
     </div>
   );
 };
 
 export const ProjectForm = ({ data, updateData }) => {
   const { project } = data;
-  const { isSectionVisible, information } = project;
+  const { isSectionVisible, content } = project;
   const defaultFormValues = {
     id: uuidv4(),
     isVisible: true,
@@ -125,33 +117,34 @@ export const ProjectForm = ({ data, updateData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    isNotEmpty(information)
+    isNotEmpty(content)
       ? updateData('project', {
           ...project,
-          information: [...project.information, formValues],
+          content: [...project.content, formValues],
         })
-      : updateData('project', { isSectionVisible: true, information: [formValues] });
+      : updateData('project', { ...project, content: [formValues] });
+
     setFormValues(defaultFormValues);
     e.target.reset();
     setIsFormVisible((prevState) => !prevState);
   };
 
-  const toggleProjectVisibility = (id) => {
-    if (isNotEmpty(information)) {
-      const updatedInformation = information.map((projectInfo) => {
-        if (projectInfo.id === id) {
-          return { ...projectInfo, isVisible: !projectInfo.isVisible };
+  const toggleProjVisibility = (id) => {
+    if (isNotEmpty(content)) {
+      const updatedContent = content.map((contentInfo) => {
+        if (contentInfo.id === id) {
+          return { ...contentInfo, isVisible: !contentInfo.isVisible };
         }
-        return projectInfo;
+        return contentInfo;
       });
-      updateData('project', { ...project, information: updatedInformation });
+      updateData('project', { ...project, content: updatedContent });
     }
   };
 
   const deleteProject = (id) => {
-    if (isNotEmpty(information)) {
-      const updatedInformation = information.filter((projectInfo) => projectInfo.id !== id);
-      updateData('project', { ...project, information: updatedInformation });
+    if (isNotEmpty(content)) {
+      const updatedContent = content.filter((contentInfo) => contentInfo.id !== id);
+      updateData('project', { ...project, content: updatedContent });
     }
   };
 
@@ -171,16 +164,16 @@ export const ProjectForm = ({ data, updateData }) => {
           <Controls
             toggleFormVisiblity={toggleFormVisiblity}
             isNotEmpty={isNotEmpty}
-            information={information}
+            information={content}
             toggleSectionVisibility={toggleSectionVisibility}
             isSectionVisible={isSectionVisible}
           />
         )}
 
-        {isNotEmpty(information) ? (
+        {isNotEmpty(content) ? (
           <div className="form-list">
-            {information.map((projectInfo) => {
-              const { id, isVisible, details } = projectInfo;
+            {content.map((contentInfo) => {
+              const { id, isVisible, details } = contentInfo;
               const { project } = details;
               return (
                 <FormList
@@ -188,7 +181,7 @@ export const ProjectForm = ({ data, updateData }) => {
                   id={id}
                   entry={project}
                   isVisible={isVisible}
-                  toggleVisibility={toggleProjectVisibility}
+                  toggleVisibility={toggleProjVisibility}
                   deleteEntry={deleteProject}
                 />
               );

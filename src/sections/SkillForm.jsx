@@ -3,6 +3,53 @@ import { useState } from 'react';
 import { TextArea } from '../components/TextArea.jsx';
 import { FormSkillsList } from '../components/FormSkillsList.jsx';
 
+const Form = ({ handleFormSubmit, handleInputChange, toggleFormVisiblity }) => {
+  return (
+    <form className="skills | form" onSubmit={handleFormSubmit}>
+      <TextArea
+        id="languages"
+        label="programming languages&#10;* enter comma between entries"
+        handleInputChange={handleInputChange}
+      />
+      <TextArea
+        id="technologies"
+        label="technologies&#10;* enter comma between entries"
+        handleInputChange={handleInputChange}
+      />
+      <TextArea
+        id="tools"
+        label="tools&#10;* enter comma between entries"
+        handleInputChange={handleInputChange}
+      />
+
+      <div className="controls-wrapper">
+        <input
+          type="button"
+          className="close-button | control-button"
+          id="close-button"
+          value="CLOSE"
+          onClick={toggleFormVisiblity}
+        />
+        <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+      </div>
+    </form>
+  );
+};
+
+const Controls = ({ toggleFormVisiblity }) => {
+  return (
+    <div className="section-control-wrapper">
+      <button
+        className="new-skill-button | section-control-button"
+        id="new-button"
+        onClick={toggleFormVisiblity}
+      >
+        NEW
+      </button>
+    </div>
+  );
+};
+
 export const SkillForm = ({ data, updateData }) => {
   const { skills } = data;
   const { languages, technologies, tools } = skills;
@@ -19,8 +66,8 @@ export const SkillForm = ({ data, updateData }) => {
     return Object.keys(obj).length !== 0;
   };
 
-  const isNotEmptyArray = (obj) => {
-    return Array.isArray(obj) && obj.length !== 0;
+  const isNotEmptyArray = (arr) => {
+    return Array.isArray(arr) && arr.length !== 0;
   };
 
   const toggleCollapse = () => {
@@ -78,77 +125,39 @@ export const SkillForm = ({ data, updateData }) => {
           SKILLS
         </button>
         <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-          {!isFormVisible && (
-            <div className="new-button-wrapper">
-              <button
-                className="new-button | control-button"
-                id="new-button"
-                onClick={toggleFormVisiblity}
-              >
-                NEW
-              </button>
-            </div>
+          {isFormVisible ? (
+            <Form
+              handleFormSubmit={handleFormSubmit}
+              handleInputChange={handleInputChange}
+              toggleFormVisiblity={toggleFormVisiblity}
+            />
+          ) : (
+            <Controls toggleFormVisiblity={toggleFormVisiblity} />
           )}
 
-          {isFormVisible && (
-            <form className="skills | form" onSubmit={handleFormSubmit}>
-              <TextArea
-                id="languages"
-                label="programming languages&#10;* enter comma between entries"
-                handleInputChange={handleInputChange}
-              />
-              <TextArea
-                id="technologies"
-                label="technologies&#10;* enter comma between entries"
-                handleInputChange={handleInputChange}
-              />
-              <TextArea
-                id="tools"
-                label="tools&#10;* enter comma between entries"
-                handleInputChange={handleInputChange}
-              />
-
-              <div className="controls-wrapper">
-                <input
-                  type="button"
-                  className="close-button | control-button"
-                  id="close-button"
-                  value="CLOSE"
-                  onClick={toggleFormVisiblity}
-                />
-                <input
-                  type="submit"
-                  className="add-button | control-button"
-                  id="add-btn"
-                  value="ADD"
-                />
-              </div>
-            </form>
-          )}
-
-          {isNotEmptyObject(skills) && (
+          {isNotEmptyObject(skills) ? (
             <div className="skills-list">
-              {isNotEmptyArray(languages) && (
+              {isNotEmptyArray(languages) ? (
                 <FormSkillsList
                   skillArray={languages}
                   deleteSkill={deleteSkill}
                   category="languages"
                 />
-              )}
+              ) : null}
 
-              {isNotEmptyArray(technologies) && (
+              {isNotEmptyArray(technologies) ? (
                 <FormSkillsList
                   skillArray={technologies}
                   deleteSkill={deleteSkill}
                   category="technologies"
                 />
-              )}
+              ) : null}
 
-              {isNotEmptyArray(tools) && (
+              {isNotEmptyArray(tools) ? (
                 <FormSkillsList skillArray={tools} deleteSkill={deleteSkill} category="tools" />
-              )}
+              ) : null}
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

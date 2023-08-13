@@ -6,9 +6,60 @@ import { Input } from '../components/Input.jsx';
 import { TextArea } from '../components/TextArea.jsx';
 import { FormList } from '../components/FormList.jsx';
 
+const Form = ({ handleFormSubmit, handleInputChange, toggleFormVisiblity }) => {
+  return (
+    <form className="experience | form" onSubmit={handleFormSubmit}>
+      <Input id="title" label="position" handleInputChange={handleInputChange} />
+      <Input id="company" label="company" handleInputChange={handleInputChange} />
+      <Input id="description" label="description" handleInputChange={handleInputChange} />
+      <Input id="location" label="location" handleInputChange={handleInputChange} />
+      <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
+      <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
+      <TextArea
+        id="tasks"
+        label="Tasks/Accomplishments&#10;* press Enter key between entries"
+        handleInputChange={handleInputChange}
+      />
+
+      <div className="controls-wrapper">
+        <input
+          type="button"
+          className="close-button | control-button"
+          id="close-button"
+          value="CLOSE"
+          onClick={toggleFormVisiblity}
+        />
+        <input type="submit" className="add-button | control-button" id="add-btn" value="ADD" />
+      </div>
+    </form>
+  );
+};
+
+const Controls = ({ toggleFormVisiblity, toggleSectionVisibility, isSectionVisible }) => {
+  return (
+    <div className="section-control-wrapper">
+      <button
+        className="new-exprience-button | section-control-button"
+        id="new-button"
+        onClick={toggleFormVisiblity}
+      >
+        NEW
+      </button>
+      <button
+        className="toggle-section-button | section-control-button"
+        id="new-button"
+        onClick={toggleSectionVisibility}
+      >
+        {isSectionVisible ? 'HIDE ' : 'SHOW '}
+        SECTION
+      </button>
+    </div>
+  );
+};
+
 export const ExperienceForm = ({ data, updateData }) => {
   const { experience } = data;
-  const { isSectionVisible, information } = experience;
+  const { isSectionVisible, content } = experience;
   const defaultFormValues = {
     id: uuidv4(),
     isVisible: true,
@@ -70,33 +121,34 @@ export const ExperienceForm = ({ data, updateData }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    isNotEmpty(information)
+    isNotEmpty(content)
       ? updateData('experience', {
           ...experience,
-          information: [...experience.information, formValues],
+          content: [...experience.content, formValues],
         })
-      : updateData('experience', { isSectionVisible: true, information: [formValues] });
+      : updateData('experience', { ...experience, content: [formValues] });
+
     setFormValues(defaultFormValues);
     e.target.reset();
     setIsFormVisible((prevState) => !prevState);
   };
 
   const toggleExpVisibility = (id) => {
-    if (isNotEmpty(information)) {
-      const updatedInformation = information.map((expInfo) => {
-        if (expInfo.id === id) {
-          return { ...expInfo, isVisible: !expInfo.isVisible };
+    if (isNotEmpty(content)) {
+      const updatedContent = content.map((contentInfo) => {
+        if (contentInfo.id === id) {
+          return { ...contentInfo, isVisible: !contentInfo.isVisible };
         }
-        return expInfo;
+        return contentInfo;
       });
-      updateData('experience', { ...experience, information: updatedInformation });
+      updateData('experience', { ...experience, content: updatedContent });
     }
   };
 
   const deleteExperience = (id) => {
-    if (isNotEmpty(information)) {
-      const updatedInformation = information.filter((expInfo) => expInfo.id !== id);
-      updateData('experience', { ...experience, information: updatedInformation });
+    if (isNotEmpty(content)) {
+      const updatedContent = content.filter((contentInfo) => contentInfo.id !== id);
+      updateData('experience', { ...experience, content: updatedContent });
     }
   };
 
@@ -106,65 +158,24 @@ export const ExperienceForm = ({ data, updateData }) => {
         EXPERIENCE
       </button>
       <div className={`collapse-wrapper ${collapsed ? 'collapsed' : ''}`}>
-        {!isFormVisible && (
-          <div className="section-control-wrapper">
-            <button
-              className="new-exprience-button | section-control-button"
-              id="new-button"
-              onClick={toggleFormVisiblity}
-            >
-              NEW
-            </button>
-            {isNotEmpty(information) && (
-              <button
-                className="toggle-section-button | section-control-button"
-                id="new-button"
-                onClick={toggleSectionVisibility}
-              >
-                {isSectionVisible && 'HIDE '}
-                {!isSectionVisible && 'SHOW '}
-                SECTION
-              </button>
-            )}
-          </div>
+        {isFormVisible ? (
+          <Form
+            handleFormSubmit={handleFormSubmit}
+            handleInputChange={handleInputChange}
+            toggleFormVisiblity={toggleFormVisiblity}
+          />
+        ) : (
+          <Controls
+            toggleFormVisiblity={toggleFormVisiblity}
+            toggleSectionVisibility={toggleSectionVisibility}
+            isSectionVisible={isSectionVisible}
+          />
         )}
 
-        {isFormVisible && (
-          <form className="experience | form" onSubmit={handleFormSubmit}>
-            <Input id="title" label="position" handleInputChange={handleInputChange} />
-            <Input id="company" label="company" handleInputChange={handleInputChange} />
-            <Input id="description" label="description" handleInputChange={handleInputChange} />
-            <Input id="location" label="location" handleInputChange={handleInputChange} />
-            <Input id="start-year" label="start year" handleInputChange={handleInputChange} />
-            <Input id="end-year" label="end year" handleInputChange={handleInputChange} />
-            <TextArea
-              id="tasks"
-              label="Tasks/Accomplishments&#10;* press Enter key between entries"
-              handleInputChange={handleInputChange}
-            />
-
-            <div className="controls-wrapper">
-              <input
-                type="button"
-                className="close-button | control-button"
-                id="close-button"
-                value="CLOSE"
-                onClick={toggleFormVisiblity}
-              />
-              <input
-                type="submit"
-                className="add-button | control-button"
-                id="add-btn"
-                value="ADD"
-              />
-            </div>
-          </form>
-        )}
-
-        {isNotEmpty(information) && (
+        {isNotEmpty(content) ? (
           <div className="form-list">
-            {information.map((expInfo) => {
-              const { id, isVisible, details } = expInfo;
+            {content.map((contentInfo) => {
+              const { id, isVisible, details } = contentInfo;
               const { title } = details;
               return (
                 <FormList
@@ -178,7 +189,7 @@ export const ExperienceForm = ({ data, updateData }) => {
               );
             })}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

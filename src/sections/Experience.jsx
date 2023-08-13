@@ -2,29 +2,32 @@ import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined
 
 export const Experience = ({ data }) => {
   const { experience } = data;
-  const { isSectionVisible, information } = experience;
+  const { isSectionVisible, content } = experience;
 
-  const isNotEmpty = (arr) => {
-    return Array.isArray(arr) && arr.length !== 0;
+  const isEmpty = (obj, prop) => {
+    if (Object.hasOwn(obj, prop)) {
+      return obj[prop].length === 0;
+    }
+    return true;
   };
 
   return (
     <>
-      {!isNotEmpty(information) && (
+      {isSectionVisible && isEmpty(experience, 'content') ? (
         <div className="section-placeholder">
           <p>EXPERIENCE</p>
         </div>
-      )}
+      ) : null}
 
-      {isSectionVisible && isNotEmpty(information) && (
+      {isSectionVisible && !isEmpty(experience, 'content') ? (
         <div className="experience section-wrapper">
           <div className="section-heading">
             <p>EXPERIENCE</p>
             <div className="section-hr"></div>
           </div>
           <div className="section-content">
-            {information.map((expInfo) => {
-              const { id, isVisible, details } = expInfo;
+            {content.map((contentInfo) => {
+              const { id, isVisible, details } = contentInfo;
               const {
                 title,
                 company,
@@ -58,7 +61,7 @@ export const Experience = ({ data }) => {
             })}
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 };
